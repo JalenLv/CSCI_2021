@@ -41,18 +41,18 @@ QUIZ Command Basics
         identical.
   - ( ) It compiles the code in 'f1.txt' and stores the result in 'f2.txt'
   - ( ) It concatenates the contents of 'f2.txt' onto the end of 'f1.txt'
-  - ( ) It makes a copy of 'f1.txt' named 'f2.txt'
+  - (X) It makes a copy of 'f1.txt' named 'f2.txt'
 
   Which command would one use to change the terminal's current directory
   to 'lab01-code'?
   - ( ) 'mv lab01-code'
-  - ( ) 'cd lab01-code'
+  - (X) 'cd lab01-code'
   - ( ) 'change lab01-code'
   - ( ) 'gcc lab01-code'
 
   Which command would one use to list all of the files contained in
   the current directory?
-  - ( ) 'ls'
+  - (X) 'ls'
   - ( ) 'list'
   - ( ) 'file'
   - ( ) 'cowsay'
@@ -76,7 +76,7 @@ QUIZ Command Basics
         C. Creates a second folder csci2021
         D. Lists the files in the current folder
         E. Moves up one folder
-  - ( ) A. Changes to your home directory/folder
+  - (X) A. Changes to your home directory/folder
         B. Creates a folder named csci2021
         C. Changes into the folder csci2021
         D. Lists the files in the current folder
