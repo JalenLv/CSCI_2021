@@ -1,0 +1,16 @@
+---
+BasedOnStyle: Google
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+ColumnLimit: 100
+DerivePointerAlignment: false
+IndentGotoLabels: false
+IndentWidth: 4
+InsertNewlineAtEOF: true
+LineEnding: LF
+PointerAlignment: Right
+SpaceAfterCStyleCast: true
+SpacesBeforeTrailingComments: 4
+TabWidth: 4
