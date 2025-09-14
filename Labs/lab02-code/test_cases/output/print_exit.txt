@@ -1,0 +1,11 @@
+Linked List Demo
+Commands:
+  print:          shows the current contents of the list
+  clear:          eliminates all elements from the list
+  exit:           exit the program
+  insert thing:   inserts the given string into the list
+  get index:      get the item at the given index
+  contains thing: determine if the given thing is in the list
+                  (NOT YET IMPLEMENTED)
+list> print
+list> exit

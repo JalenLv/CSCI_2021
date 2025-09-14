@@ -1,0 +1,11 @@
+list> insert Mario
+list> insert Luigi
+list> insert Toad
+list> insert Bowser
+list> insert Princess
+list> contains Mario
+list> contains Luigi
+list> contains Princess
+list> contains Goomba
+list> contains Bob-omb
+list> exit

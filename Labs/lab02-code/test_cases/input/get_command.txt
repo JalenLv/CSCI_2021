@@ -1,0 +1,11 @@
+list> get 0
+list> get 5
+list> insert apple
+list> insert pear
+list> insert banana
+list> print
+list> get 0
+list> get 1
+list> get 2
+list> get 3
+list> exit

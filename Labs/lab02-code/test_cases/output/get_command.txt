@@ -1,0 +1,29 @@
+Linked List Demo
+Commands:
+  print:          shows the current contents of the list
+  clear:          eliminates all elements from the list
+  exit:           exit the program
+  insert thing:   inserts the given string into the list
+  get index:      get the item at the given index
+  contains thing: determine if the given thing is in the list
+                  (NOT YET IMPLEMENTED)
+list> get 0
+out of bounds
+list> get 5
+out of bounds
+list> insert apple
+list> insert pear
+list> insert banana
+list> print
+0: apple
+1: banana
+2: pear
+list> get 0
+0: apple
+list> get 1
+1: banana
+list> get 2
+2: pear
+list> get 3
+out of bounds
+list> exit

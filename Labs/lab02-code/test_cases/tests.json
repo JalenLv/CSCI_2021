@@ -1,0 +1,47 @@
+{
+    "name": "Lab 02",
+    "command": "./list_main",
+    "prompt": "list>",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "prompt": null,
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "list_main: Print then Exit",
+            "description": "Print the empty list and exit",
+            "input_file": "test_cases/input/print_exit.txt",
+            "output_file": "test_cases/output/print_exit.txt",
+            "use_valgrind": "y",
+            "points": 0.125
+        },
+        {
+            "name": "list_main: Insert 3 and Print",
+            "description": "Add several items and print them back",
+            "input_file": "test_cases/input/insert_print.txt",
+            "output_file": "test_cases/output/insert_print.txt",
+            "use_valgrind": "y",
+            "points": 0.125
+        },
+        {
+            "name": "Get Command",
+            "description": "Checks that the ~get N~ command works correctly to return the value at the Nth index of the list",
+            "input_file": "test_cases/input/get_command.txt",
+            "output_file": "test_cases/output/get_command.txt",
+            "use_valgrind": "y",
+            "points": 0.125
+        },
+        {
+            "name": "Contains Items",
+            "description": "Add several items, then check if several items are present in the linked list",
+            "input_file": "test_cases/input/contains_items.txt",
+            "output_file": "test_cases/output/contains_items.txt",
+            "use_valgrind": "y",
+            "points": 0.125
+        }
+    ]
+}
