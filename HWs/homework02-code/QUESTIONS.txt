@@ -1,0 +1,165 @@
+			   __________________
+
+			    HW 02 QUESTIONS
+			   __________________
+
+PROBLEM 1 'age.c'
+=================
+
+A
+~
+
+  Examine the source code for 'age.c'. Compile it using the following
+  invocation of 'gcc'
+  ,----
+  | gcc age.c
+  `----
+  This should create the executable 'a.out'. Run this program using the
+  invocation.
+  ,----
+  | ./a.out
+  `----
+  Perform several runs of the program with the following values and
+  paste your output in the space below.
+  - Enter 16
+  - Enter 18
+  - Enter 25
+  - Enter 44
+
+
+B
+~
+
+  Analyze the code for 'age.c' and describe a flaw in the conditional
+  structure towards the end that prevents the output:
+  ,----
+  | You can vote, drink, and be president.
+  `----
+  from being printed.
+
+  Alter the code to fix this bug so that for ages 35 and larger, the
+  above text is printed. Paste your fixed code for the conditional below
+  and test it by recompiling and showing a demo run.
+
+
+C
+~
+
+  Attempt to enter some absurd ages for the age computation.
+  - Enter 5000
+  - Enter -5000
+  Describe anything strange that seems to be happening based your
+  understanding of how basic arithmetic is supposed to work.
+
+  If you happen to know WHY this strangeness is happening, describe it
+  below. If not, you will find out soon.
+
+
+D
+~
+
+  Describe which function is used to print information to the screen.
+  Describe how it seems to work to substitute values into output and
+  what *format specifier* indicates an integer should be substituted.
+
+
+E
+~
+
+  Describe what function is used to read typed input interactively from
+  a user in the 'age.c' program.  Describe how its arguments differ from those
+  for the arguments for printing to the screen earlier. Why is this difference
+  necessary?
+
+PROBLEM 2: Memory in diagram.c
+==============================
+
+  For each of the C blocks below, give a memory diagram of the block
+  indicating memory locations and contents of cells. These blocks appear
+  in the file 'diagram.c' which you can modify to print results if you
+  want to verify your answers.
+
+  Make sure to accurately express the standard sizes for each of the
+  kinds of variables on a 64-bit machine in your diagrams by placing
+  them at appropriate memory addresses that are tightly packed. A
+  reminder: on 64-bit machines, all pointers are 64 bits / 8 bytes.
+
+
+A
+~
+
+  ,----
+  |   // BLOCK A
+  |   int a = 5;
+  |   int b = 7;
+  |   double x = 4.5;
+  |   int *ip = &a;
+  |   ip = &b;
+  |   int c = *ip;
+  |   *ip = 19;
+  `----
+
+  ,----
+  | | ADDR  | SYMBOL | VAL |
+  | |-------+--------+-----|
+  | | #1048 | a      |     |
+  | | #1044 | b      |     |
+  | |       |        |     |
+  | |       |        |     |
+  | |       |        |     |
+  `----
+
+
+B
+~
+
+  ,----
+  |   // BLOCK B
+  |   int arr[4] = {12, 14, 16, 18};
+  |   int *arp = arr;
+  |   int brr = 11;
+  |   arr[1] = 23;
+  |   arp[3] = 29;
+  |   arp = &arr[2];
+  |   *arp = brr;
+  `----
+
+  ,----
+  | | ADDR  | SYMBOL | VAL |
+  | |-------+--------+-----|
+  | | #2024 | arr[3] |  18 |
+  | | #2020 | arr[2] |  16 |
+  | |       |        |     |
+  | |       |        |     |
+  | |       |        |     |
+  | |       |        |     |
+  `----
+
+
+C
+~
+
+  ,----
+  |   // BLOCK C
+  |   char str[8] = "hello";
+  |   str[5] = 'w';
+  |   char *cp = str + 6;
+  |   *cp = '\0';
+  |   str[0] = 'y';
+  `----
+
+  ,----
+  |
+  | | ADDR  | SYMBOL | VAL |
+  | |-------+--------+-----|
+  | | #3107 | str[7] | ?   |
+  | | #3106 | str[6] | ?   |
+  | | #3105 | str[5] | \0  |
+  | | #3104 | str[4] | o   |
+  | | #3103 | str[3] | l   |
+  | | #3102 | str[2] | l   |
+  | | #3101 | str[1] | e   |
+  | | #3100 | str[0] | h   |
+  | | #3092 |     cp | ?   |
+  |
+  `----
