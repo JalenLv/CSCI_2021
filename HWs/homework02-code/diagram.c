@@ -10,6 +10,11 @@ int main() {
     ip = &b;
     int c = *ip;
     *ip = 19;
+    printf("addr of a=%d\n", 1048);
+    printf("addr of b=%ld\n", 1048 - (long) &b + (long) &a);
+    printf("addr of x=%ld\n", 1048 - (long) &x + (long) &a);
+    printf("addr of ip=%ld\n", 1048 - (long) &ip + (long) &a);
+    printf("addr of c=%ld\n", 1048 - (long) &c + (long) &a);
     // DRAW MEMORY HERE
 
     // BLOCK B
