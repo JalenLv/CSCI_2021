@@ -1,0 +1,28 @@
+{
+    "name": "Lab 03",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "treasure_main Text Input",
+            "description": "Checks output and memory correctness of treasure_main program with text file as input",
+            "command": "./treasure_main -txt map1.txt",
+            "output_file": "test_cases/output/treasure_main_text.txt",
+            "use_valgrind": "y",
+            "points": 0.25
+        },
+        {
+            "name": "treasure_main Binary Input",
+            "description": "Checks output and memory correctness of treasure_main program with binary file as input",
+            "command": "./treasure_main -bin map2.bin",
+            "output_file": "test_cases/output/treasure_main_binary.txt",
+            "use_valgrind": "y",
+            "points": 0.25
+        }
+    ]
+}

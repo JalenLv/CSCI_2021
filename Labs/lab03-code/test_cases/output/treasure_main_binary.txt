@@ -1,0 +1,43 @@
+Loading treasure map from binary file 'map2.bin'
+Reading map from binary file 'map2.bin'
+Allocating map struct
+Map is 9 by 13
+10 treasures on the map
+Allocating array of treasure locations
+Reading treasures
+Treasure at 5 2 called 'Goblet_of_Fire'
+Treasure at 3 8 called 'Invisibility_Cloak'
+Treasure at 4 11 called 'Elder_Wand'
+Treasure at 8 10 called 'Mirror_of_Erised'
+Treasure at 1 12 called 'Philosophers_Stone'
+Treasure at 7 9 called 'Marauders_Map'
+Treasure at 8 2 called 'Pensieve'
+Treasure at 3 9 called 'Sword_of_Gryffindor'
+Treasure at 7 0 called 'Tom_Riddles_Diary'
+Treasure at 0 11 called 'Time_Turner'
+Completed file, closing
+Returning pointer to heap-allocated treasure_t
+
+==TREASURE MAP==
+...........J.
+............E
+.............
+........BH...
+...........C.
+..A..........
+.............
+I........F...
+..G.......D..
+================
+A: Goblet_of_Fire
+B: Invisibility_Cloak
+C: Elder_Wand
+D: Mirror_of_Erised
+E: Philosophers_Stone
+F: Marauders_Map
+G: Pensieve
+H: Sword_of_Gryffindor
+I: Tom_Riddles_Diary
+J: Time_Turner
+
+Deallocating map
