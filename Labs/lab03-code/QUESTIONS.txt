@@ -137,7 +137,7 @@ Command Line Arguments
     user types it in.
   - ( ) The global variable 'args' will be an array with 'args[0]' as
     the string "-txt" and 'args[1]' as "map1.txt"
-  - ( ) The 'argc' parameter will have value 3 and 'argv[1]' will be a
+  - (X) The 'argc' parameter will have value 3 and 'argv[1]' will be a
     pointer to the string "-txt" while 'argv[2]' points to the string "map1.txt"
   - ( ) The 'getenv()' function is used to extract the command line
     arguments from the environment.
@@ -149,7 +149,7 @@ Struct Definition
   The 'treasuremap_t' struct is defined in the following location which
   shows its fields (parts):
   - ( ) In the C file 'treasure_main.c'
-  - ( ) In the header 'treasure.h'
+  - (X) In the header 'treasure.h'
   - ( ) In the header 'stdio.h'
   - ( ) Trick question: the definition is read from user input
 
@@ -175,7 +175,7 @@ File Format
     `----
     and the application should just read the strings in the file into
     the struct.
-  - ( ) The first line has the the size of the treasuremap AND the
+  - (X) The first line has the the size of the treasuremap AND the
     number of treasures in the map (N). There are N remaining lines
     which have treasure positions/descriptions in them.
   - ( ) The first line has the number of rows/columns in the map and
@@ -200,7 +200,7 @@ Nested Struct Syntax
 
   Which of the following best describes the syntax used based on the
   'treasuremap_t' type?
-  - ( ) 'tmap' is a pointer to a struct so '->' is used to dereference
+  - (X) 'tmap' is a pointer to a struct so '->' is used to dereference
     it to a field; the 'locations' field is a pointer to an array so
     square braces are used to dereference it. 'fscanf()' needs an
     address so '&' is used.

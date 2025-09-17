@@ -66,31 +66,31 @@ treasuremap_t *treasuremap_load_text(const char *file_name) {
     FILE *file_handle = fopen(file_name, "r");
 
     // TODO: Check if the file fails to open and return NULL if so.
-    if (file_handle == ???) {
+    if (file_handle == NULL) {
         printf("Couldn't open file '%s', returning NULL\n", file_name);
 
         // TODO: return failure value
-        return ???;
+        return NULL;
     }
 
     printf("Allocating map struct\n");
 
     // TODO: Determine byte size for treasuremap_t struct
-    treasuremap_t *tmap = malloc(sizeof(???));
+    treasuremap_t *tmap = malloc(sizeof(treasuremap_t));
 
     fscanf(file_handle, "%d %d", &tmap->height, &tmap->width);
     printf("Map is %d by %d\n", tmap->height, tmap->width);
 
     // TODO: read in the number of treasures
-    fscanf(???);
+    fscanf(file_handle, "%d", &tmap->ntreasures);
 
     // TODO: print message like '4 treasures on the map'
-    printf(???);
+    printf("%d treasures on the map\n", tmap->ntreasures);
 
     printf("Allocating array of treasure locations\n");
 
     // TODO: allocate array of treasure
-    tmap->locations = malloc(???);
+    tmap->locations = malloc(tmap->ntreasures * sizeof(treasureloc_t));
 
     printf("Reading treasures\n");
 
@@ -99,10 +99,10 @@ treasuremap_t *treasuremap_load_text(const char *file_name) {
         fscanf(file_handle, "%d", &tmap->locations[i].row);
 
         // TODO: read in the column location for this treasure
-        fscanf(???);
+        fscanf(file_handle, "%d", &tmap->locations[i].col);
 
         // TODO: read in the description for this treasure
-        fscanf(???);
+        fscanf(file_handle, "%s", tmap->locations[i].description);
 
         printf("Treasure at %d %d called '%s'\n", tmap->locations[i].row, tmap->locations[i].col,
                tmap->locations[i].description);
@@ -139,18 +139,18 @@ treasuremap_t *treasuremap_load_binary(const char *file_name) {
     printf("Reading map from binary file '%s'\n", file_name);
     FILE *file_handle = fopen(file_name, "r");
     // TODO check for failure and return appropriate value
-    if (file_handle == ???) {
+    if (file_handle == NULL) {
         printf("Couldn't open file '%s', returning NULL\n", file_name);
-        return ???;
+        return NULL;
     }
 
     printf("Allocating map struct\n");
     // TODO How much space to allocate for treasuremap_t struct?
-    treasuremap_t *tmap = malloc(sizeof(???));
+    treasuremap_t *tmap = malloc(sizeof(treasuremap_t));
     // TODO: Determine how many bytes to read for treasure map height
-    fread(&tmap->height, sizeof(???), 1, file_handle);
+    fread(&tmap->height, sizeof(int), 1, file_handle);
     // TODO Determine how many int elements to read in for treasure map width
-    fread(&tmap->width, sizeof(int), ???, file_handle);
+    fread(&tmap->width, sizeof(int), 1, file_handle);
     printf("Map is %d by %d\n", tmap->height, tmap->width);
 
     fread(&tmap->ntreasures, sizeof(int), 1, file_handle);
@@ -158,20 +158,20 @@ treasuremap_t *treasuremap_load_binary(const char *file_name) {
 
     printf("Allocating array of treasure locations\n");
     // TODO: Allocate space to hold all treasure locations
-    tmap->locations = malloc(???);
+    tmap->locations = malloc(tmap->ntreasures * sizeof(treasureloc_t));
 
     printf("Reading treasures\n");
     // Read in each treasure from the file
     for (int i = 0; i < tmap->ntreasures; i++) {
         // TODO: Read in treasure location's row and column
-        fread(???, sizeof(int), 1, ???);
-        fread(&tmap->locations[i].col, ???, 1, ???);
+        fread(&tmap->locations[i].row, sizeof(int), 1, file_handle);
+        fread(&tmap->locations[i].col, sizeof(int), 1, file_handle);
 
         int description_len;
         // TODO: Read in the length of the treasure's description
-        fread(&description_len, ???, 1, file_handle);
+        fread(&description_len, sizeof(int), 1, file_handle);
         // TODO: Knowing this length, read in the full treasure description
-        fread(tmap->locations[i].description, ???, ???, file_handle);
+        fread(tmap->locations[i].description, sizeof(char), description_len, file_handle);
         tmap->locations[i].description[description_len] = '\0';
         printf("Treasure at %d %d called '%s'\n", tmap->locations[i].row, tmap->locations[i].col,
                tmap->locations[i].description);
@@ -194,7 +194,7 @@ void treasuremap_free(treasuremap_t *tmap) {
     free(tmap->locations);
 
     // TODO: de-allocate the tmap struct
-    free(???);
+    free(tmap);
 }
 
 // PROVIDED AND COMPLETE: Print out the treasure map; uses local
