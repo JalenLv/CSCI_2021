@@ -1,0 +1,52 @@
+CSCI 2021 Gradebook System
+Commands:
+  create <name>:          creates a new class with specified name
+  class:                  shows the name of the class
+  add <name> <score>:     adds a new score
+  lookup <name>:          searches for a score by student name
+  clear:                  resets current gradebook
+  print:                  shows all scores, sorted by student name
+  write_text:             saves all scores to text file
+  read_text <file_name>:  loads scores from text file
+  write_bin:              saves all scores to binary file
+  read_bin <file_name>:   loads scores from binary file
+  exit:                   exits the program
+gradebook> create csci_2021
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Desmond 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> write_bin
+Gradebook successfully written to csci_2021.bin
+gradebook> clear
+gradebook> print
+Error: You must create or load a gradebook first
+gradebook> read_bin csci_2021.bin
+Gradebook loaded from binary file
+gradebook> class
+csci_2021
+gradebook> print
+Scores for all students in csci_2021:
+Desmond: 92
+Eloise: 100
+Hurley: 80
+Miles: 80
+Sun: 98
+gradebook> lookup Desmond
+Desmond: 92
+gradebook> lookup Hurley
+Hurley: 80
+gradebook> lookup Eloise
+Eloise: 100
+gradebook> lookup Locke
+No score for 'Locke' found
+gradebook> lookup Miles
+Miles: 80
+gradebook> lookup Juliet
+No score for 'Juliet' found
+gradebook> lookup Sun
+Sun: 98
+gradebook> lookup Jin
+No score for 'Jin' found
+gradebook> exit

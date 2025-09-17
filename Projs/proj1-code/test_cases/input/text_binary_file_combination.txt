@@ -1,0 +1,28 @@
+gradebook> create MATH1572
+gradebook> class
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Desmond 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> write_text
+gradebook> clear
+gradebook> print
+gradebook> create MATH1573
+gradebook> class
+gradebook> add Frank 42
+gradebook> add Rose 5949
+gradebook> add Bernard 4939
+gradebook> add Juliet 4939269
+gradebook> add Claire 459392
+gradebook> add Jacob 3929
+gradebook> write_bin
+gradebook> clear
+gradebook> read_text MATH1572.txt
+gradebook> class
+gradebook> print
+gradebook> clear
+gradebook> read_bin MATH1573.bin
+gradebook> class
+gradebook> print
+gradebook> exit

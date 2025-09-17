@@ -1,0 +1,4 @@
+gradebook> print
+gradebook> create CSCI4061
+gradebook> print
+gradebook> exit

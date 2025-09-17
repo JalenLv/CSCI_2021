@@ -1,0 +1,3 @@
+gradebook> create CSCI4041
+gradebook> add Sun 98
+gradebook> exit

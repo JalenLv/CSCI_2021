@@ -1,0 +1,4 @@
+gradebook> create CSCI4041
+gradebook> class
+gradebook> read_bin csci_2021.bin
+gradebook> exit

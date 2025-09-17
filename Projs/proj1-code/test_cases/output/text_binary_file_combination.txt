@@ -1,0 +1,63 @@
+CSCI 2021 Gradebook System
+Commands:
+  create <name>:          creates a new class with specified name
+  class:                  shows the name of the class
+  add <name> <score>:     adds a new score
+  lookup <name>:          searches for a score by student name
+  clear:                  resets current gradebook
+  print:                  shows all scores, sorted by student name
+  write_text:             saves all scores to text file
+  read_text <file_name>:  loads scores from text file
+  write_bin:              saves all scores to binary file
+  read_bin <file_name>:   loads scores from binary file
+  exit:                   exits the program
+gradebook> create MATH1572
+gradebook> class
+MATH1572
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Desmond 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> write_text
+Gradebook successfully written to MATH1572.txt
+gradebook> clear
+gradebook> print
+Error: You must create or load a gradebook first
+gradebook> create MATH1573
+gradebook> class
+MATH1573
+gradebook> add Frank 42
+gradebook> add Rose 5949
+gradebook> add Bernard 4939
+gradebook> add Juliet 4939269
+gradebook> add Claire 459392
+gradebook> add Jacob 3929
+gradebook> write_bin
+Gradebook successfully written to MATH1573.bin
+gradebook> clear
+gradebook> read_text MATH1572.txt
+Gradebook loaded from text file
+gradebook> class
+MATH1572
+gradebook> print
+Scores for all students in MATH1572:
+Desmond: 92
+Eloise: 100
+Hurley: 80
+Miles: 80
+Sun: 98
+gradebook> clear
+gradebook> read_bin MATH1573.bin
+Gradebook loaded from binary file
+gradebook> class
+MATH1573
+gradebook> print
+Scores for all students in MATH1573:
+Bernard: 4939
+Claire: 459392
+Frank: 42
+Jacob: 3929
+Juliet: 4939269
+Rose: 5949
+gradebook> exit

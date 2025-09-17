@@ -1,0 +1,8 @@
+gradebook> read_text csci4131.txt
+gradebook> class
+gradebook> write_bin
+gradebook> clear
+gradebook> class
+gradebook> read_bin csci4131.bin
+gradebook> print
+gradebook> exit

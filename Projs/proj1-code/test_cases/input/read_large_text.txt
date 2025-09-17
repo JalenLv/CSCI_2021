@@ -1,0 +1,3 @@
+gradebook> read_text csci4131.txt
+gradebook> print
+gradebook> exit

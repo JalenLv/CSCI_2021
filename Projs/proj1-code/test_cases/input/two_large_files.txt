@@ -1,0 +1,6 @@
+gradebook> read_text csci4131.txt
+gradebook> print
+gradebook> clear
+gradebook> read_bin csci_5521.bin
+gradebook> print
+gradebook> exit

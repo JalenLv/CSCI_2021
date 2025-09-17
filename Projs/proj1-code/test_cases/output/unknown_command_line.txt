@@ -1,0 +1,15 @@
+Error: Unknown gradebook file extension
+CSCI 2021 Gradebook System
+Commands:
+  create <name>:          creates a new class with specified name
+  class:                  shows the name of the class
+  add <name> <score>:     adds a new score
+  lookup <name>:          searches for a score by student name
+  clear:                  resets current gradebook
+  print:                  shows all scores, sorted by student name
+  write_text:             saves all scores to text file
+  read_text <file_name>:  loads scores from text file
+  write_bin:              saves all scores to binary file
+  read_bin <file_name>:   loads scores from binary file
+  exit:                   exits the program
+gradebook> exit

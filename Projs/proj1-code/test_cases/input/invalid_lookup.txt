@@ -1,0 +1,2 @@
+gradebook> lookup Sun
+gradebook> exit

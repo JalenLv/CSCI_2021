@@ -1,0 +1,2 @@
+gradebook> add Sun 589
+gradebook> exit

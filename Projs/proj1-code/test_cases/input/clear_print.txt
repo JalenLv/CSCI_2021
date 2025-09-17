@@ -1,0 +1,5 @@
+gradebook> create CSCI4041
+gradebook> class
+gradebook> clear
+gradebook> print
+gradebook> exit

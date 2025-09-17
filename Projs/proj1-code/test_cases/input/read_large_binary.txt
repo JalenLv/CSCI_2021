@@ -1,0 +1,3 @@
+gradebook> read_bin csci_5521.bin
+gradebook> print
+gradebook> exit

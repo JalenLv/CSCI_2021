@@ -1,0 +1,4 @@
+gradebook> create CSCI2011
+gradebook> class
+gradebook> print
+gradebook> exit

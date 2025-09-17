@@ -1,0 +1,23 @@
+gradebook> create CSCI4041
+gradebook> class
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Desmond 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> clear
+gradebook> create CSCI4061
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Desmond 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> clear
+gradebook> create CSCI5103
+gradebook> add Sun 98
+gradebook> add Hurley 80
+gradebook> add Locke 92
+gradebook> add Miles 80
+gradebook> add Eloise 100
+gradebook> clear
+gradebook> exit

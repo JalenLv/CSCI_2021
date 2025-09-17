@@ -1,0 +1,2 @@
+gradebook> read_text nothing.txt
+gradebook> exit

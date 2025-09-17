@@ -1,0 +1,245 @@
+{
+    "name": "Project 1",
+    "command": "./gradebook_main",
+    "prompt": "gradebook>",
+    "use_valgrind": "y",
+    "tests": [
+        {
+            "name": "Start, Quit",
+            "description": "Starts the program then issues the exit command which should end the program",
+            "output_file": "test_cases/output/start_quit.txt",
+            "input_file": "test_cases/input/start_quit.txt"
+        },
+        {
+            "name": "Start, Print, Quit",
+            "description": "Starts the program, attempts a print command which should cause an error, then issues the exit command which should end the program",
+            "output_file": "test_cases/output/start_print_quit.txt",
+            "input_file": "test_cases/input/start_print_quit.txt"
+        },
+        {
+            "name": "Check for End of Input",
+            "description": "Checks that the main() loop detects EOF when scanning typed input and exits. When working interactively in a terminal, typing <Ctrl>-d will indicate end of input.",
+            "output_file": "test_cases/output/check_eof.txt",
+            "input_file": "test_cases/input/check_eof.txt"
+        },
+        {
+            "name": "Create a New Gradebook",
+            "description": "Start the program, create a new gradebook with the name \"CSCI 2011\" and then exit.",
+            "output_file": "test_cases/output/create_gradebook.txt",
+            "input_file": "test_cases/input/create_gradebook.txt"
+        },
+        {
+            "name": "Create New Gradebook and Print Class Name",
+            "description": "Starts the program, creates a new gradebook, issues a command to print out the name of the new gradebook, and exits.",
+            "output_file": "test_cases/output/create_print.txt",
+            "input_file": "test_cases/input/create_print.txt"
+        },
+        {
+            "name": "Print Empty Gradebook Scores",
+            "description": "Creates a new gradebook, then issues a command to print scores from the empty gradebook, then exits.",
+            "output_file": "test_cases/output/print_empty.txt",
+            "input_file": "test_cases/input/print_empty.txt"
+        },
+        {
+            "name": "Invalid Print",
+            "description": "Starts the program and requests to print out scores when there is no currently active gradebook",
+            "output_file": "test_cases/output/invalid_print.txt",
+            "input_file": "test_cases/input/invalid_print.txt"
+        },
+        {
+            "name": "Invalid Lookup",
+            "description": "Starts the program and attempts to look up a score when there is no currently active gradebook",
+            "output_file": "test_cases/output/invalid_lookup.txt",
+            "input_file": "test_cases/input/invalid_lookup.txt"
+        },
+        {
+            "name": "Invalid then Valid Print",
+            "description": "Requests to print out scores when there is no currently active gradebook. Then creates a new empty gradebook and prints out scores",
+            "output_file": "test_cases/output/invalid_valid_print.txt",
+            "input_file": "test_cases/input/invalid_valid_print.txt"
+        },
+        {
+            "name": "Score Lookups in Empty Gradebook",
+            "description": "Attempts to look up student scores in an empty gradebook. Should get a not found message for any lookup attempt.",
+            "output_file": "test_cases/output/lookup_empty.txt",
+            "input_file": "test_cases/input/lookup_empty.txt"
+        },
+        {
+            "name": "Invalid Add",
+            "description": "Attempts to add a new student score before there is any currently active gradebook",
+            "output_file": "test_cases/output/invalid_add.txt",
+            "input_file": "test_cases/input/invalid_add.txt"
+        },
+        {
+            "name": "Invalid Add Negative",
+            "description": "Attempts to add a negative score to the gradebook",
+            "output_file": "test_cases/output/add_negative.txt",
+            "input_file": "test_cases/input/add_negative.txt"
+        },
+        {
+            "name": "Add Single Score",
+            "description": "Creates a new gradebook and adds one student score to it",
+            "output_file": "test_cases/output/add_one_score.txt",
+            "input_file": "test_cases/input/add_one_score.txt"
+        },
+        {
+            "name": "Add Multiple Scores",
+            "description": "Creates a new gradebook and adds a small number of scores",
+            "output_file": "test_cases/output/add_multiple_scores.txt",
+            "input_file": "test_cases/input/add_multiple_scores.txt"
+        },
+        {
+            "name": "Add, Print Single Score",
+            "description": "Creates a new gradebook and adds one student score before printing it out",
+            "output_file": "test_cases/output/add_print_single.txt",
+            "input_file": "test_cases/input/add_print_single.txt"
+        },
+        {
+            "name": "Add, Print Multiple Scores",
+            "description": "Creates a new gradebook and adds a small number of scores before printing them in alphabetical order",
+            "output_file": "test_cases/output/add_print_multiple.txt",
+            "input_file": "test_cases/input/add_print_multiple.txt"
+        },
+        {
+            "name": "Add and Look Up Score",
+            "description": "Adds a single score to a new gradebook, then looks up this score",
+            "output_file": "test_cases/output/add_lookup_one.txt",
+            "input_file": "test_cases/input/add_lookup_one.txt"
+        },
+        {
+            "name": "Add and Look up Multiple Scores",
+            "description": "Adds a small number of scores to a new gradebook, then looks up each of the previously added scores",
+            "output_file": "test_cases/output/add_lookup_multi.txt",
+            "input_file": "test_cases/input/add_lookup_multi.txt"
+        },
+        {
+            "name": "Add and Look up Multiple Scores 2",
+            "description": "Adds a small number of scores to a new gradebook, then looks up both existent and nonexistent scores",
+            "output_file": "test_cases/output/add_lookup_multi_2.txt",
+            "input_file": "test_cases/input/add_lookup_multi_2.txt"
+        },
+        {
+            "name": "Clear Before Class Command",
+            "description": "Creates a new gradebook, then clears it, then attempts to print out class name",
+            "output_file": "test_cases/output/clear_class.txt",
+            "input_file": "test_cases/input/clear_class.txt"
+        },
+        {
+            "name": "Clear Before Print",
+            "description": "Creates a new gradebook, then clears it, then attempts to print out scores",
+            "output_file": "test_cases/output/clear_print.txt",
+            "input_file": "test_cases/input/clear_print.txt"
+        },
+        {
+            "name": "Clear Before Lookup",
+            "description": "Creates a new gradebook, then clears it, then attempts to look up a score",
+            "output_file": "test_cases/output/clear_lookup.txt",
+            "input_file": "test_cases/input/clear_lookup.txt"
+        },
+        {
+            "name": "Invalid Clear",
+            "description": "Creates a new gradebook, then clears it, then tries to run the clear command again",
+            "output_file": "test_cases/output/invalid_clear.txt",
+            "input_file": "test_cases/input/invalid_clear.txt"
+        },
+        {
+            "name": "Multiple Clears",
+            "description": "Runs the clear command several times in a row to check that all memory is properly freed",
+            "output_file": "test_cases/output/multi_clear.txt",
+            "input_file": "test_cases/input/multi_clear.txt"
+        },
+        {
+            "name": "Read From Nonexistent Text File",
+            "description": "Attempts to read a gradebook from a text file that does not exist",
+            "output_file": "test_cases/output/nonexistent_text.txt",
+            "input_file": "test_cases/input/nonexistent_text.txt"
+        },
+        {
+            "name": "Text File Persistence 1",
+            "description": "Creates a new gradebook with a small number of scores, writes the gradebook to a text file. Clears, then reads in that same file, which should recover original gradebook",
+            "output_file": "test_cases/output/text_file_persistence_1.txt",
+            "input_file": "test_cases/input/text_file_persistence_1.txt"
+        },
+        {
+            "name": "Invalid Read from Text File",
+            "description": "Attempts to read in a new gradebook from a text file while there is still a currently active gradebook",
+            "output_file": "test_cases/output/invalid_text_file_read.txt",
+            "input_file": "test_cases/input/invalid_text_file_read.txt"
+        },
+        {
+            "name": "Read From Nonexistent Binary File",
+            "description": "Attempts to read a gradebook from a binary file that does not exist",
+            "output_file": "test_cases/output/nonexistent_binary.txt",
+            "input_file": "test_cases/input/nonexistent_binary.txt"
+        },
+        {
+            "name": "Binary File Persistence 1",
+            "description": "Creates a new gradebook with a small number of scores, writes the gradebook to a binary file. Clears, then reads in that same file, which should recover original gradebook",
+            "output_file": "test_cases/output/binary_file_persistence_1.txt",
+            "input_file": "test_cases/input/binary_file_persistence_1.txt"
+        },
+        {
+            "name": "Invalid Read from Binary File",
+            "description": "Attempts to read a new gradebook from a binary file while there is still a currently active gradebook",
+            "output_file": "test_cases/output/invalid_binary_file_read.txt",
+            "input_file": "test_cases/input/invalid_binary_file_read.txt"
+        },
+        {
+            "name": "Text and Binary File Combination",
+            "description": "Creates a new gradebook, writes it to a text file, then clears and creates a second gradebook, writes it to a binary file. Checks that both gradebooks can be recovered from their files",
+            "output_file": "test_cases/output/text_binary_file_combination.txt",
+            "input_file": "test_cases/input/text_binary_file_combination.txt"
+        },
+        {
+            "name": "Read Large Gradebook from Text File",
+            "description": "Reads in data from a provided large text file",
+            "output_file": "test_cases/output/read_large_text.txt",
+            "input_file": "test_cases/input/read_large_text.txt"
+        },
+        {
+            "name": "Read Large Gradebook from Binary File",
+            "description": "Reads in data from a provided large binary file",
+            "output_file": "test_cases/output/read_large_binary.txt",
+            "input_file": "test_cases/input/read_large_binary.txt"
+        },
+        {
+            "name": "Read Two Large Files",
+            "description": "Reads in gradebook from a text file and prints contents, then clears it and does the same for a binary file.",
+            "output_file": "test_cases/output/two_large_files.txt",
+            "input_file": "test_cases/input/two_large_files.txt"
+        },
+        {
+            "name": "Write Large Gradebook to Text File",
+            "description": "Reads in a large gradebook from a binary file, then writes it to a text file. Reloads from the text file and prints contents.",
+            "output_file": "test_cases/output/write_large_text_file.txt",
+            "input_file": "test_cases/input/write_large_text_file.txt"
+        },
+        {
+            "name": "Write Large Gradebook to Binary File",
+            "description": "Reads in a large results log from text file, then writes the log to a binary file. Reloads from the binary file and prints contents.",
+            "output_file": "test_cases/output/write_large_bin_file.txt",
+            "input_file": "test_cases/input/write_large_bin_file.txt"
+        },
+        {
+            "name": "Text File Command Line Argument",
+            "description": "Read in a text file with the name specified from the command line",
+            "command": "./gradebook_main csci4131.txt",
+            "output_file": "test_cases/output/text_command_line.txt",
+            "input_file": "test_cases/input/text_command_line.txt"
+        },
+        {
+            "name": "Binary File Command Line Argument",
+            "description": "Read in a binary file with the name specified from the command line",
+            "command": "./gradebook_main csci_5521.bin",
+            "output_file": "test_cases/output/binary_command_line.txt",
+            "input_file": "test_cases/input/binary_command_line.txt"
+        },
+        {
+            "name": "Unknown File Type Command Line Argument",
+            "description": "The program receives a file name that does not end in either \".txt\" or \".bin\", which should cause an error.",
+            "command": "./gradebook_main Lemmings.exe",
+            "output_file": "test_cases/output/unknown_command_line.txt",
+            "input_file": "test_cases/input/unknown_command_line.txt"
+        }
+    ]
+}

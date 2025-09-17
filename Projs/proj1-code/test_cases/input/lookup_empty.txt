@@ -1,0 +1,5 @@
+gradebook> create MATH1573
+gradebook> lookup ben
+gradebook> lookup Nemo
+gradebook> lookup Hurley
+gradebook> exit
