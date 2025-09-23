@@ -1,0 +1,91 @@
+                           _________________
+
+                            HW 03 QUESTIONS
+                           _________________
+
+Write your answers to the questions below directly in this text file to
+prepare for the associated quiz. Credit for the HW is earned by
+completing the online quiz.
+
+
+PROBLEM 1: Two-Pass Input and malloc()
+======================================
+
+  One frequently encounters the following situation when reading files
+  - The file contains some data that is to be read into a dynamically
+    allocated array
+  - There is no indication of how much data is in the file
+
+  C programs commonly use a *two-pass* input strategy to handle this
+  situation
+  1. Read through the file once to count items in the file, then allocate
+     memory for an array of that size
+  2. Back up to the beginning of the file and read data from the file
+     into the array
+
+  The provided program 'twopass.c' demonstrates this technique along
+  with several other input / formatting techniques.
+
+
+A
+~
+  Compile and run the 'twopass.c' program on the two provided text files
+  'nums1.txt' and 'nums2.txt'.  Paste the output the program produces
+  below.
+
+B
+~
+  Examine the function 'read_all_doubles()' in 'twopass.c' and describe
+  which lines/blocks of code carry out the following actions. Use the
+  provided comments in the file as a guide.
+
+  - Opens the file for reading and checks for errors
+  - Counts all the doubles in the file
+  - Allocates memory for doubles in the file
+  - Moves the file read position to the beginning of the file
+  - Closes the file when reading is complete
+
+C
+~
+  In your answer to the previous problem, you should have identified a
+  use of 'malloc()' in 'read_all_doubles()'.  Where is this memory
+  'free()'d and why?
+
+D
+~
+  Examine how the doubles read from the file are printed in the 'main()'
+  function. Discuss below the format specifiers used by 'printf()' and
+  the width/precision modifiers that are used to get a "table-like"
+  appearance.  You may wish to consult the Manual page on 'printf()'
+  such as the one here:
+
+  <https://man7.org/linux/man-pages/man3/printf.3.html>
+
+
+PROBLEM 2: Binary Files
+=======================
+
+  Examine the 'read_items.c' program and the provided input binary file
+  'items.bin'.
+
+A
+~
+  Open the 'items.bin' file with a text editor (make sure not to modify any
+  of the file's contents). What do you see? Are there any parts of the file
+  that look understandable to you?
+
+B
+~
+  Compile the 'read_items.c' program and run it on the provided binary
+  file 'items.bin'. Paste the output below. How does this output relate
+  to what you saw when you opened the file with an editor?
+
+C
+~
+  Examine the body of the 'while' loop in the 'main()' function. When working
+  with binary files, we use 'fread()' rather than 'fscanf()' to read in a
+  string value. However, we need information about the string's length so we
+  know how many bytes to read.
+
+  How did we learn of the length of the string representing each item's name in
+  the binary file? What two things does this length help us do?
