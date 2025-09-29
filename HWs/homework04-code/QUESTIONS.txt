@@ -1,0 +1,142 @@
+                           _________________
+
+                            HW 04 QUESTIONS
+                           _________________
+
+Write your answers to the questions below directly in this text file to
+prepare for the associated quiz. Credit for the HW is earned by
+completing the online quiz.
+
+PROBLEM 1: Number conversions
+=============================
+
+A
+~
+
+  Fill in the following table of equivalences.  Filling in the table
+  from top to bottom is advantageous as earlier rows can sometimes be
+  used to infer lower values. Feel free to make use of an ASCII table.
+
+  ,----
+  | |-----+------+-----+-----------+--------------|
+  | | Dec | Hex  | Oct | Binary    | Char         |
+  | |-----+------+-----+-----------+--------------|
+  | |   9 | 0x09 |  11 | 0000 1001 | TAB          |
+  | |  10 | ?    |   ? | ?         | \n (newline) |
+  | |   ? | 0x20 |   ? | ?         | SPACE        |
+  | |   ? | ?    |   ? | 0011 0010 | ?            |
+  | |  65 | 0x41 | 101 | 0100 0001 | A            |
+  | |  66 | ?    |   ? | ?         | ?            |
+  | |   ? | 0x4F | 117 | ?         | O            |
+  | |  80 | ?    |   ? | ?         | P            |
+  | |  91 | ?    | 133 | 0101 1011 | [            |
+  | |  97 | 0x61 | 141 | ?         | ?            |
+  | |   ? | ?    | 172 | 0111 1010 | z            |
+  | | 145 | 0x91 | 221 | ?         | none         |
+  | | 160 | ?    |   ? | 1010 0000 | none         |
+  | | 180 | 0xB4 | 264 | ?         | none         |
+  | | 255 | ?    |   ? | ?         | none         |
+  | |-----+------+-----+-----------+--------------|
+  `----
+
+
+B
+~
+
+  Fill in the binary, hex, and decimal values for the given examples. The
+  first example is completed for you. Assume all of these are 32-bit
+  unsigned integers.
+  ,----
+  |   COMPLETED
+  |   Binary:   0000 0000  0000 0000  0001 1000  1110 1001
+  |             0    0     0    0     1    8     E    9
+  |   Hex   :   0018E9
+  |   Decimal:  6377
+  |
+  |
+  |   NUMBER 1
+  |   Binary:   0000 0000  0010 1111  0011 1010  1000 1101
+  |             ?
+  |   Hex   :   ??
+  |   Decimal:  ??
+  |
+  |
+  |   NUMBER 2
+  |   Binary:   ??
+  |             7    F     8    3     5    A     0    B
+  |   Hex   :   7F835A0B
+  |   Decimal:  ??
+  `----
+
+
+PROBLEM 2: Signed Integer Conversions
+=====================================
+
+A
+~
+
+  Apply the steps involved in converting the following positive binary
+  number to its two's complement negation in 8-bit signed
+  format. Recall the steps are
+  - Invert the bits
+  - Add one
+  Apply these steps to the following number:
+  ,----
+  | 0111 1100  = 0x7C = 124 (decimal)
+  `----
+
+  The result is the two's complement representation of -124.
+
+  Convert back to positive via the same process
+  - Invert the bits
+  - Add one
+  to show that the original bits are recovered.
+
+
+B
+~
+
+  Complete the following table of equivalences assuming 8-bit
+  twos-complement signed integers. The rightmost column is the inverse
+  of the binary representation: flip 1's to 0's, and vice versa.
+
+  ,----
+  | |------+------+-----------+-----------|
+  | |  Dec |  Hex | Binary    | Inverse   |
+  | |------+------+-----------+-----------|
+  | |   +5 | 0x05 | 0000 0101 | 1111 1010 |
+  | |   -5 |    ? | 1111 1011 | ?         |
+  | |  +32 | 0x20 | ?         | ?         |
+  | |  -32 | 0xE0 | ?         | 0001 1111 |
+  | | +127 | 0x7F | ?         | ?         |
+  | | -127 | 0x81 | ?         | ?         |
+  | | -128 |    ? | 1000 0000 | ?         |
+  | |   +2 |    ? | ?         | ?         |
+  | |   -2 | 0xFE | ?         | ?         |
+  | |   +1 | 0x01 | 0000 0001 | ?         |
+  | |   -1 |    ? | 1111 1111 | ?         |
+  | |    0 |    ? | ?         | ?         |
+  | |------+------+-----------+-----------|
+  `----
+
+
+PROBLEM 3: Converting Strings to Numbers
+========================================
+
+  Inspect the program in the code pack called 'convert.c'.  Compile and
+  run it using
+  ,----
+  | > gcc convert.c
+  | > ./a.out
+  `----
+
+  Describe briefly what kind of conversion is being done by the
+  'convert()' function given.
+  - A. What kind of data is input?
+  - B. What result is produced by the function?
+  - C. How is a success versus an error reported?
+  - D. Why is this kind of conversion needed?
+  - E. Which built-in C function does this conversion function use and how is
+       its calling convention different from that of convert()?
+  - F. This code also shows off a new control structure - the case/switch
+       feature. How does it work?
