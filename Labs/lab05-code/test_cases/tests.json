@@ -1,0 +1,19 @@
+{
+    "name": "Lab 05",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Puzzlebox phase03",
+            "description": "Checks if puzzlebox mock phase 03 is passed with inputs from \"input.txt\"",
+            "command": "./phase03 input.txt",
+            "output_file": "test_cases/output/phase03.txt",
+            "points": 0.5
+        }
+    ]
+}
