@@ -1,0 +1,298 @@
+{
+    "allOddBits": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 12,
+        "is_floating_point": false,
+        "rating": 2
+    },
+    "anyEvenBit": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 12,
+        "is_floating_point": false,
+        "rating": 2
+    },
+    "bitAnd": {
+        "allowed_binary_operators": [
+            "|",
+            "|="
+        ],
+        "allowed_unary_operators": [
+            "~"
+        ],
+        "allowed_total_ops": 8,
+        "is_floating_point": false,
+        "rating": 1
+    },
+    "bitMask": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 16,
+        "is_floating_point": false,
+        "rating": 3
+    },
+    "bitXor": {
+        "allowed_binary_operators": [
+            "&",
+            "&="
+        ],
+        "allowed_unary_operators": [
+            "~"
+        ],
+        "allowed_total_ops": 14,
+        "is_floating_point": false,
+        "rating": 1
+    },
+    "floatIsEqual": {
+        "allowed_binary_operators": [
+            "*",
+            "/",
+            "%",
+            "+",
+            "-",
+            "<<",
+            ">>",
+            "<",
+            ">",
+            "<=",
+            ">=",
+            "==",
+            "!=",
+            "&",
+            "^",
+            "|",
+            "&&",
+            "||",
+            "=",
+            "*=",
+            "/=",
+            "%=",
+            "+=",
+            "-=",
+            "<<=",
+            ">>=",
+            "&=",
+            "^=",
+            "|="
+        ],
+        "allowed_unary_operators": [
+            "++",
+            "--",
+            "+",
+            "-",
+            "~",
+            "!"
+        ],
+        "allowed_total_ops": 25,
+        "is_floating_point": true,
+        "rating": 2
+    },
+    "floatScale2": {
+        "allowed_binary_operators": [
+            "*",
+            "/",
+            "%",
+            "+",
+            "-",
+            "<<",
+            ">>",
+            "<",
+            ">",
+            "<=",
+            ">=",
+            "==",
+            "!=",
+            "&",
+            "^",
+            "|",
+            "&&",
+            "||",
+            "=",
+            "*=",
+            "/=",
+            "%=",
+            "+=",
+            "-=",
+            "<<=",
+            ">>=",
+            "&=",
+            "^=",
+            "|="
+        ],
+        "allowed_unary_operators": [
+            "++",
+            "--",
+            "+",
+            "-",
+            "~",
+            "!"
+        ],
+        "allowed_total_ops": 30,
+        "is_floating_point": true,
+        "rating": 4
+    },
+    "isLess": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 24,
+        "is_floating_point": false,
+        "rating": 3
+    },
+    "isPositive": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 8,
+        "is_floating_point": false,
+        "rating": 2
+    },
+    "isPower2": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 20,
+        "is_floating_point": false,
+        "rating": 4
+    },
+    "replaceByte": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 10,
+        "is_floating_point": false,
+        "rating": 3
+    },
+    "rotateLeft": {
+        "allowed_binary_operators": [
+            "&",
+            "&=",
+            "^",
+            "^=",
+            "|",
+            "|=",
+            "+",
+            "+=",
+            ">>",
+            ">>=",
+            "<<",
+            "<<="
+        ],
+        "allowed_unary_operators": [
+            "!",
+            "~"
+        ],
+        "allowed_total_ops": 25,
+        "is_floating_point": false,
+        "rating": 3
+    }
+}
