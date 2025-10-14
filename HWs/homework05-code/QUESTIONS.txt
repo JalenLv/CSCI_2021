@@ -1,0 +1,193 @@
+                           _________________
+
+                            HW 05 QUESTIONS
+                           _________________
+PROBLEM 1: ipow Assembly
+========================
+
+  The code pack contains the following files.
+  - ipow_for.c: ipow function using a for loop
+  - ipow_while.c: ipow function using a while loop
+  - ipow_main.c: main function to call the above
+  Both the for and while versions define the same function which has a
+  meaning which should be obvious.
+
+  ON X86-64 SYSTEMS (MOST WINDOWS COMPUTERS, PRE-M1 MACS):
+  Compile and run these as programs using either of the below:
+  ,----
+  | > gcc ipow_main.c ipow_for.c
+  | > ./a.out 3 5
+  | 3^5 = 243
+  |
+  | OR
+  |
+  | > gcc ipow_main.c ipow_while.c
+  | > ./a.out 3 5
+  | 3^5 = 243
+  `----
+
+  ON ARM64 SYSTEMS (M1 AND NEWER MACS):
+  You will need to use an x86-64 C compiler and then use
+  'qemu' to run x86-64 code on your arm64 system. These are
+  pre-installed for you in the 2021 Docker container.
+
+  Compile and run these as programs using either of the below:
+  ,----
+  | > x86_64-linux-gnu-gcc ipow_main.c ipow_for.c
+  | > qemu-x86_64 ./a.out 3 5
+  | 3^5 = 243
+  |
+  | OR
+  |
+  | > x86_64-linux-gnu-gcc ipow_main.c ipow_while.c
+  | > qemu-x86_64 ./a.out 3 5
+  | 3^5 = 243
+  `----
+
+A
+~
+
+  Compile 'ipow_for.c' to assembly code. Look up how to do this with gcc
+  if you did not take notes on how to do so from lecture. Make sure to
+  disable optimizations by gcc when compiling.
+
+  Paste the command you used and the generated assembly for the
+  resulting 'ipow_for.s' as your answer below.
+
+B
+~
+
+  Similarly, compile the file 'ipow_while.c' to assembly and compare the
+  resulting 'ipow_while.s' to 'ipow_for.s'.
+  - If you see differences, describe what these differences are and why
+    the generated code varies between the two.
+  - If you see similar code, describe why this might be.
+
+C
+~
+
+  Examine the generated assembly code in 'ipow_for.s' carefully. Based on
+  the "assignments" of initial values to registers and the use of
+  registers in operations like multiplication, addition, and comparison,
+  attempt to draw a correspondence between the assembly registers and C
+  variables. Ensure you identify the C variables
+  - argument base: which register contains the 1st function argument?
+  - argument exp: which register contains the 2nd function argument?
+  - local pow which is also the return value
+  - local i
+
+  For your answer, paste in an annotated copy of the ipow_for.s which
+  shows the correspondence of registers to C variables and
+  describes how most of the assembly lines correspond to lines in the C
+  code. You may skip lines like
+  ,----
+  | .cfi_startproc
+  | .type	ipow, @function
+  | .size	ipow, .-ipow
+  | .ident	"GCC: (Ubuntu 11.4.0...) 11.4.0"
+  | .section	.note.GNU-stack,"",@progbits
+  `----
+  which are assembler directives beyond the scope of our current
+  interest.
+
+PROBLEM 2: Coins Assembly code
+==============================
+
+  The code pack contains the following files.
+
+  ------------------------------------------------------------------------
+   FILE               Descriptions
+  ------------------------------------------------------------------------
+   coins_main.c       main function to call the below
+   coins_funcs.c      two functions manipulating the `coins_t' structure
+   coins_funcs_asm.s  incomplete assembly versions of the above functions
+  ------------------------------------------------------------------------
+
+  The purpose of this problem is to complete the assembly code in
+  'coins_funcs_asm.s' so that the functions there act identically to the
+  C versions.
+
+  Compile the the C version using the below:
+  ,----
+  | > gcc coins_main.c coins_funcs.c
+  | > ./a.out 24
+  | 24 cents is...
+  | 0 quarters
+  | 2 dimes
+  | 0 nickels
+  | 4 pennies
+  | which is 24 cents
+  |
+  | > ./a.out 63
+  | 63 cents is...
+  | 2 quarters
+  | 1 dimes
+  | 0 nickels
+  | 3 pennies
+  | which is 63 cents
+  `----
+
+  Edit 'coins_funcs_asm.s' to complete it and answer the questions below.
+  After completing the assembly code, the following will compile and
+  produce the same results.
+
+  ON X86-64 SYSTEMS (MOST WINDOWS COMPUTERS, PRE-M1 MACS):
+  ,----
+  | > gcc coins_main.c coins_funcs_asm.s
+  | > ./a.out 24
+  | 24 cents is...
+  | 0 quarters
+  | 2 dimes
+  | 0 nickels
+  | 4 pennies
+  | which is 24 cents
+  `----
+
+  ON ARM64 SYSTEMS (M1 MACS AND NEWER):
+  ,----
+  | > x86_64-linux-gnu-gcc coins_main.c coins_funcs_asm.s
+  | > qemu-x86_64./a.out 24
+  | 24 cents is...
+  | 0 quarters
+  | 2 dimes
+  | 0 nickels
+  | 4 pennies
+  | which is 24 cents
+  `----
+
+A
+~
+
+  Consider the first block of the assembly function marked BLOCK A.
+  Describe what it is doing and how it relates to the C code in
+  'coins_funcs.c'. Mention the purpose of the code around the label
+  .OOB.
+
+
+B
+~
+
+  BLOCK B performs a division operation. Based on the comments and
+  assembly operations, describe what is going on, why the %eax register
+  is used, and why the movb instruction is employed.
+
+
+C
+~
+
+  Complete BLOCK C by following the pattern laid out in the preceding
+  blocks to calculate the number of nickels and pennies required and set
+  the fields of the struct pointer to appropriate values. Consider
+  carefully whether two additional divisions are required or if a single
+  divide will suffice.
+
+
+D
+~
+
+  In the total_coins() function, study the pattern laid out in the first
+  few blocks which extract the 8-bit fields from the packed coins_t
+  struct in register rdi. Note the use of shifts with AND operations to
+  mask the low order bits to get a single field "alone" in a register
+  before doing further operations. Mimic this pattern to complete BLOCK
+  D which adds on nickels and pennies to the total.
