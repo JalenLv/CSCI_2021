@@ -1,0 +1,136 @@
+                           __________________
+
+                            LAB 06 QUESTIONS
+                           __________________
+
+Lab Instructions
+================
+
+  Follow the instructions below to experiment with topics related to
+  this lab.
+  - For sections marked QUIZ, fill in an (X) for the appropriate
+    response in this file. Use the command 'make test-quiz' to see if
+    all of your answers are correct.
+  - For sections marked CODE, complete the code indicated. Use the
+    command 'make test-code' to check if your code is complete.
+  - DO NOT CHANGE any parts of this file except the QUIZ sections as it
+    may interfere with the tests otherwise.
+  - If your 'QUESTIONS.txt' file seems corrupted, restore it by copying
+    over the 'QUESTIONS.txt.bak' backup file.
+  - When you complete the exercises, check your answers with 'make test'
+    and if all is well, create a zip file with 'make zip' and upload it
+    to Gradescope. Ensure that the Autograder there reflects your local
+    results.
+  - IF YOU WORK IN A GROUP only one member needs to submit and then add
+    the names of their group.
+
+
+QUIZ x86-64 Assembly Basics
+===========================
+
+Where can we assume the first two arguments to a function are stored? Assume
+the two arguments are 32 bits in size.
+  - ( ) In registers '%eax' and '%ebx'
+  - ( ) In memory and pointed to by '%rax' and '%rbx', so we'll need to use
+        syntax like '(%rax)' and '(%rbx)' to retrieve them.
+  - ( ) In registers '%rdi' and '%rsi'
+  - ( ) In registers '%edi' and '%esi'
+
+
+How do we return a value from a function? Assume the value is 64 bits in length.
+  - ( ) By specifying the value as an operand to the 'ret' instruction, such as
+        writing 'ret %ecx' to return the value in the '%ecx' register.
+  - ( ) By storing the value in a special location in memory.
+  - ( ) The return value is always placed in the '%rax' register by convention.
+  - ( ) The return value is always placed in the '%rcx' register by convention.
+
+
+What will the following assembly instructions do?
+    cmpl %eax, %ebx
+    jl MY_LABEL
+  - ( ) Compare the values in '%eax' and '%ebx' and jump to 'MY_LABEL' if the
+        value in '%eax' is less than the value in '%ebx'.
+  - ( ) Compare the values at memory locations pointed to by '%eax' and '%ebx'
+        and jump to 'MY_LABEL' if the value pointed to by '%eax' is less than
+        the value pointed to by '%ebx'.
+  - ( ) Compare the values in '%eax' and '%ebx' and jump to 'MY_LABEL' if the
+        value in '%ebx' is less than the value in '%eax'.
+  - ( ) Compare the values at memory locations pointed to by '%eax' and '%ebx'
+        and jump to 'MY_LABEL' if the value pointed to by '%ebx' is less than
+        the value pointed to by '%eax'.
+
+
+Which of the following registers is NOT safe to use to hold a temporary value
+within a function (without some additional considerations we will learn about
+soon)?
+  - ( ) '%rbx'
+  - ( ) '%rax'
+  - ( ) '%rcx'
+  - ( ) '%r8'
+
+
+CODE Complete Function Implementations in funcs.s
+=================================================
+
+  First, start by studying the code in 'main.c'. You will see that this code
+  defines a simple 'main()' function that calls two other functions and prints
+  out their results. The two functions called by 'main()' are:
+    1. 'int my_max(int i, int j)'
+    2. 'int my_pow(int base, int exp)'
+
+  The 'my_max' function determines and returns the maximum of inputs 'x' and
+  'y', while the 'my_pow' function computes the expression 'base^exp', where
+  'base' and 'exp' are its two arguments.
+
+  Your task is to complete the implementation of these two functions in
+  x86-64 assembly code. You should complete the code template provided
+  in 'funcs.s' to accomplish this.
+
+  Note also that we have provided C implementations of these two functions for
+  you in 'funcs.c'. The recommended approach to this lab is to study the C
+  versions of these two functions and then translate them to assembly.
+
+  The 'main' program can be compiled with:
+  ,----
+  | > make
+  `----
+
+  A correct run of the program should produce the following output.
+
+  ON X86-64 SYSTEMS (MOST WINDOWS COMPUTERS, PRE-M1 MACS):
+  ,----
+  | > ./main
+  | Max of 42 and 23 is: 42
+  | Max of 108 and 219 is: 219
+  | 4^3 = 64
+  | 7^9 = 40353607
+  `----
+
+  ON ARM64 SYSTEMS (M1 AND NEWER MACS):
+  ,----
+  | > qemu-x86_64 ./main
+  | Max of 42 and 23 is: 42
+  | Max of 108 and 219 is: 219
+  | 4^3 = 64
+  | 7^9 = 40353607
+  `----
+
+  You can also use 'make run' to run your code, which will work on both x86-64
+  and arm64 machines.
+
+  Test that the code behaves correctly via the command
+  ,----
+  | make test-code
+  `----
+
+  and verify that both code/quiz are correct via
+  ,----
+  | make test
+  `----
+
+  before using
+  ,----
+  | make zip
+  `----
+
+  to create a zip to submit.

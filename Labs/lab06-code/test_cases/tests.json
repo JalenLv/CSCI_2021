@@ -1,0 +1,19 @@
+{
+    "name": "Lab 06",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Main Program",
+            "description": "Checks if class to my_max and my_pow functions return correct results",
+            "command": "./main",
+            "output_file": "test_cases/output/main.txt",
+            "points": 0.5
+        }
+    ]
+}
