@@ -9,7 +9,12 @@
 #   %eax, %ecx, %edx, %esi, %edi, %r8d, %r9d, %r10d, %r11d
 # DO NOT USE other registers. We will learn why soon.
 my_max:
-    movl $0, %eax
+    cmpl %edi, %esi
+    jge GEQ
+    movl %edi, %eax
+    ret
+GEQ:
+    movl %esi, %eax
     ret
 
 # Computes base^exp
@@ -19,5 +24,13 @@ my_max:
 #   %eax, %ecx, %edx, %esi, %edi, %r8d, %r9d, %r10d, %r11d
 # DO NOT USE other registers. We will learn why soon.
 my_pow:
-    movl $0, %eax
+    movl $1, %eax   # int result
+    movl $1, %ecx   # int i
+    jmp IF
+LOOP:
+    imull %edi, %eax
+    addl $1, %ecx
+IF:
+    cmpl %ecx, %esi
+    jge LOOP
     ret

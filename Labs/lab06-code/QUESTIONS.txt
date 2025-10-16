@@ -34,14 +34,14 @@ the two arguments are 32 bits in size.
   - ( ) In memory and pointed to by '%rax' and '%rbx', so we'll need to use
         syntax like '(%rax)' and '(%rbx)' to retrieve them.
   - ( ) In registers '%rdi' and '%rsi'
-  - ( ) In registers '%edi' and '%esi'
+  - (X) In registers '%edi' and '%esi'
 
 
 How do we return a value from a function? Assume the value is 64 bits in length.
   - ( ) By specifying the value as an operand to the 'ret' instruction, such as
         writing 'ret %ecx' to return the value in the '%ecx' register.
   - ( ) By storing the value in a special location in memory.
-  - ( ) The return value is always placed in the '%rax' register by convention.
+  - (X) The return value is always placed in the '%rax' register by convention.
   - ( ) The return value is always placed in the '%rcx' register by convention.
 
 
@@ -53,7 +53,7 @@ What will the following assembly instructions do?
   - ( ) Compare the values at memory locations pointed to by '%eax' and '%ebx'
         and jump to 'MY_LABEL' if the value pointed to by '%eax' is less than
         the value pointed to by '%ebx'.
-  - ( ) Compare the values in '%eax' and '%ebx' and jump to 'MY_LABEL' if the
+  - (X) Compare the values in '%eax' and '%ebx' and jump to 'MY_LABEL' if the
         value in '%ebx' is less than the value in '%eax'.
   - ( ) Compare the values at memory locations pointed to by '%eax' and '%ebx'
         and jump to 'MY_LABEL' if the value pointed to by '%ebx' is less than
@@ -63,7 +63,7 @@ What will the following assembly instructions do?
 Which of the following registers is NOT safe to use to hold a temporary value
 within a function (without some additional considerations we will learn about
 soon)?
-  - ( ) '%rbx'
+  - (X) '%rbx'
   - ( ) '%rax'
   - ( ) '%rcx'
   - ( ) '%r8'
