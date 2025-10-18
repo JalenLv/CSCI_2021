@@ -87,7 +87,7 @@ YOU WILL RECEIVE NO CREDIT IF YOUR CODE DOES NOT PASS THIS CHECK.
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-    return 2;
+    return (~(x & y)) & (~(~x & ~y));
 }
 
 /*
@@ -98,7 +98,7 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
-    return 2;
+    return ~(~x | ~y);
 }
 
 /*
@@ -110,7 +110,11 @@ int bitAnd(int x, int y) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-    return 2;
+    int mask = 0xAA + (0xAA << 8);
+    mask = mask + (mask << 16);
+    // `mask` is used to retain only odd-numbered bits of `x`,
+    // and meanwhile serves as the comparison target.
+    return !((x & mask) ^ mask);
 }
 
 /*
@@ -125,7 +129,24 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int floatIsEqual(unsigned uf, unsigned ug) {
-    return 2;
+    // Get exponent and fraction parts
+    // The sign bit is not needed for NaN/zero check
+    int exp_f = (uf >> 23) & 0xFF;
+    int frac_f = uf & 0x7FFFFF;
+    int exp_g = (ug >> 23) & 0xFF;
+    int frac_g = ug & 0x7FFFFF;
+
+    // Check if either uf or ug is NaN
+    if ((exp_f == 0xFF && frac_f != 0) || (exp_g == 0xFF && frac_g != 0)) {
+        return 0;
+    }
+
+    // Check for +0 and -0
+    if ((uf << 1) == 0 && (ug << 1) == 0) {
+        return 1;
+    }
+
+    return uf == ug;
 }
 
 /*
@@ -137,7 +158,10 @@ int floatIsEqual(unsigned uf, unsigned ug) {
  *   Rating: 2
  */
 int anyEvenBit(int x) {
-    return 2;
+    int mask = 0x55 + (0x55 << 8);
+    mask = mask + (mask << 16);
+    // Similar to allOddBits but checks "any" instead of "all"
+    return !!(x & mask);
 }
 
 /*
@@ -148,7 +172,8 @@ int anyEvenBit(int x) {
  *   Rating: 2
  */
 int isPositive(int x) {
-    return 2;
+    // Check sign bit and whether x is zero
+    return (!(x >> 31)) & (!!x);
 }
 
 /*
@@ -161,7 +186,8 @@ int isPositive(int x) {
  *   Rating: 3
  */
 int replaceByte(int x, int n, int c) {
-    return 2;
+    int shift = n << 3;
+    return (x & ~(0xFF << shift)) | (c << shift);
 }
 
 /*
@@ -172,7 +198,16 @@ int replaceByte(int x, int n, int c) {
  *   Rating: 3
  */
 int isLess(int x, int y) {
-    return 2;
+    int sign_x = (x >> 31) & 1;
+    int sign_y = (y >> 31) & 1;
+    int diff_sign = sign_x ^ sign_y;
+
+    // If signs are different, x < y if x is negative
+    // If signs are the same, x < y if (y - x) is positive
+    int diff_sign_result = diff_sign & sign_x;
+    int same_sign_result = (!diff_sign) & ((x + (~y + 1)) >> 31) & 1;
+
+    return diff_sign_result | same_sign_result;
 }
 
 /*
@@ -184,7 +219,9 @@ int isLess(int x, int y) {
  *   Rating: 3
  */
 int rotateLeft(int x, int n) {
-    return 2;
+    int left = x << n;
+    int right = (x >> (32 + (~n + 1))) & ((1 << n) + (~1 + 1));
+    return left | right;
 }
 
 /*
@@ -198,7 +235,9 @@ int rotateLeft(int x, int n) {
  *   Rating: 3
  */
 int bitMask(int highbit, int lowbit) {
-    return 2;
+    int high_mask = ~((~0) << highbit << 1);
+    int low_mask = (~0) << lowbit;
+    return high_mask & low_mask;
 }
 
 /*
@@ -213,7 +252,38 @@ int bitMask(int highbit, int lowbit) {
  *   Rating: 4
  */
 unsigned floatScale2(unsigned uf) {
-    return 2;
+    int exp_f = (uf >> 23) & 0xFF;
+    int frac_f = uf & 0x7FFFFF;
+
+    // pm zero
+    if ((uf << 1) == 0) {
+        return uf;
+    }
+
+    // pm inf and NaN
+    if (exp_f == 0xFF) {
+        return uf;
+    }
+
+    // Denormalized
+    if (exp_f == 0 && frac_f != 0) {
+        if ((frac_f >> 22) & 1) {
+            // Will become normalized
+            return (uf & 0x80000000) | (1 << 23) | ((frac_f << 1) & 0x7FFFFF);
+        } else {
+            // Still denormalized
+            return (uf & 0x80000000) | (frac_f << 1);
+        }
+    }
+
+    // Normalized
+    if (exp_f + 1 == 0xFF) {
+        // Will become pm inf
+        return (uf & 0x80000000) | (0xFF << 23);
+    } else {
+        // Still normalized
+        return (uf & 0x80000000) | ((exp_f + 1) << 23) | frac_f;
+    }
 }
 
 /*
@@ -225,6 +295,5 @@ unsigned floatScale2(unsigned uf) {
  *   Rating: 4
  */
 int isPower2(int x) {
-    return 2;
+    return (!!x) & (!(x >> 31)) & !(x & (x + (~1 + 1)));
 }
-
