@@ -1,0 +1,289 @@
+                           _________________
+
+                            HW 06 QUESTIONS
+                           _________________
+
+Write your answers to the questions below directly in this text file to
+prepare for the associated quiz. Credit for the HW is earned by
+completing the online quiz.
+
+
+PROBLEM 1: Division and Assembly Errors
+=======================================
+
+A: Incorrect Types
+~~~~~~~~~~~~~~~~~~
+
+  Examine the following source code files:
+  - 'dodiv_main.c' contains a main function which calls the 'dodiv()'
+    function
+  - 'dodiv_badtypes.s' contains the function written in assembly but has
+    an error which leads to incorrect results.
+
+  Compile and run the code in these files and report your results.
+
+  ON X86-64 MACHINES (WINDOWS AND PRE-M1 MACS):
+  ,----
+  | > gcc -g dodiv_main.c dodiv_badtype.s
+  | > ./a.out
+  `----
+
+  ON ARM64 MACHINES (M1 AND NEWER MACS):
+  ,----
+  | > x86_64-linux-gnu-gcc -g dodiv_main.c dodiv_badtype.s
+  | > qemu-x86_64 ./a.out
+  `----
+
+  Identify which assembly instructions are incorrect and why.
+
+
+B: Correct Version
+~~~~~~~~~~~~~~~~~~
+
+  After identifying the error in 'dodiv_badtypes.s', correct the errors
+  and paste your whole code below. Make sure to compile and test the
+  fixed code.
+
+
+C: Segmentation Fault
+~~~~~~~~~~~~~~~~~~~~~
+
+  Examine the following source code files:
+  - 'dodiv_main.c' contains a main function which calls the 'dodiv()'
+    function
+  - 'dodiv_segfault.s' contains the function written in assembly but has
+    another memory error.
+
+  Compile and run the source code in these files and report your results. Make
+  sure to include debug information when compiling by using the '-g' flag.
+
+  ON X86-64 MACHINES (WINDOWS AND PRE-M1 MACS):
+  ,----
+  | > gcc -g dodiv_main.c dodiv_segfault.s
+  | > valgrind ./a.out
+  `----
+
+  ON ARM64 MACHINES (M1 AND NEWER MACS):
+  ,----
+  | > x86_64-linux-gnu-gcc -g dodiv_main.c dodiv_segfault.s
+  `----
+  Unfortunately, it isn't possible to run valgrind on x86-64 executables
+  on an arm64 system. Instead, you can use 'gdb' to investigate (which
+  you'll need to do in a later part of this homework anyway, so this just
+  gives you a head start). We've written a shell script to automate the
+  commands needed to run 'gdb' on x86-64 assembly for you:
+  ,----
+  | > bash run_gdb.sh a.out
+  `----
+  Then, use the 'continue' gdb command to run the program. You'll encounter a
+  memory error. What instruction caused the error? What were the values of
+  the register operands for this instruction (hint: use a command like
+  'print $rax', where rax can be replaced by any register name to see
+  a register's value).
+
+  After running the code, report what you see. Look very carefully at the out of
+  bounds address which is identified by valgrind as an 'Invalid Write' (on
+  x86-64), or the register values that triggered the error (on arm64).
+  Determine why the strange and SMALL memory address shows up and why it is
+  problematic. What differences are present in this version over your corrected
+  version from before that explain the trouble?
+
+D: Calling from Assembly
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+  The C code in 'dodiv_main.c' provides a main function that can also be
+  written in assembly, though setting up calls to 'printf()' are a bit
+  tedious. Analyze the assembly version provided in 'dodiv_main_asm.s'
+  and answer the following questions. Focus on filling in the following
+  C-Assembly correspondence table.
+
+  ---------------------------------------------------------------------
+   Location in                                            Assembly
+   main()            C Code                               Instructions
+  ---------------------------------------------------------------------
+   Call to dodiv()   int numer = 42;
+                     int denom = 11;
+                     &quot
+                     &rem
+  ---------------------------------------------------------------------
+   Call to printf()  printf("%d / %d = %d rem %d\n", ...)
+   arguments         printf(..., quot)
+                     printf(..., rem)
+  ---------------------------------------------------------------------
+
+  Also describe what the following two elements of assembly do:
+  - Beginning of main(): 'subq $8, %rsp'
+  - End of main(): 'addq $8, %rsp'
+
+
+PROBLEM 2: Binary Analysis
+==========================
+
+  The two files verify_main.c and verify.o can be compiled together to
+  form an executable as in the following.
+
+  ON X86-64 MACHINES:
+  ,----
+  | > gcc -g verify_main.c verify.o
+  | > ./a.out
+  | Complete this sentence by C creator Dennis Ritchie:
+  | C has the power of assembly language and the convenience of ...
+  | pizza?
+  | Have a nice tall glass of ... NOPE.
+  | >
+  `----
+
+  ON ARM64 MACHINES:
+  ,----
+  | > x86_64-linux-gnu-gcc -g verify.o verify_main.c
+  | > qemu-x86_64 ./a.out
+  | Complete this sentence by C creator Dennis Ritchie:
+  | C has the power of assembly language and the convenience of ...
+  | pizza?
+  | Have a nice tall glass of ... NOPE.
+  | >
+  `----
+
+  The intent of the executable is to enter the correct string to
+  complete a sentence.  Unfortunately the source code for the verify()
+  function in verify.o has been lost.  This problem analyzes how one
+  might determine the correct answer without source code.
+
+
+A: strings utility for binaries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Make use of the 'strings' program which is available on most Unix
+  platforms. This program shows the ASCII strings present in a binary
+  object such as verify.o. Run it by typing the following:
+
+  ON X86-64 MACHINES:
+  ,----
+  | > strings verify.o
+  `----
+
+  ON ARM64 MACHINES:
+  ,----
+  | > x86_64-linux-gnu-strings verify.o
+  `----
+
+  Show the results running the 'strings' program for your answer and speculate
+  about what strings seem probable as completions to the sentence in
+  verify_main.
+
+
+B: nm utility to show symbol names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Run the 'nm' utility which is short for "names". It produces the set
+  of symbols present in a binary file.
+
+  ON X86-64 MACHINES:
+  ,----
+  | > nm verify.o
+  `----
+
+  ON ARM64 MACHINES:
+  ,----
+  | > x86_64-linux-gnu-nm verify.o
+  `----
+
+  Such symbols are identified by 1-letter codes such as
+  - T/t : program instructions (text) in the object
+  - D/d : data defined in the objects
+  - U : undefined symbols in the object which must come from other objects
+
+  Show the output of your run of 'nm' and speculate on what variable
+  might contain the completion to the sentences.
+
+
+C: GDB with Assembly
+~~~~~~~~~~~~~~~~~~~~
+
+  The binary utilities mentioned can give some insight and perhaps
+  enable problems like this to be "brute forced": once all possible
+  answers are known, try all of them until something works.
+
+  However, 'gdb' can provide a faster route as it handles assembly code
+  as easily as C code. Take the following approach:
+
+  First, make sure you have compiled a program from 'verify_main.c' and
+  'verify.o' as described above. Make sure you compiled with the -g flag to add
+  some helpful debugging info. The instructions below assume this executable
+  program has the default name 'a.out'.
+
+  Next, you need to run 'gdb' on this executable.
+
+  ON X86-64 MACHINES:
+  ,----
+  | > gdb a.out
+  `----
+
+  ON ARM64 MACHINES:
+  Running 'gdb' on a binary for a non-native ISA is tricky, so we've
+  automated the commands for you with a shell script. You can run this
+  script like so:
+  ,----
+  | > bash run_gdb.sh a.out
+  `----
+
+  Once you have 'gdb up and running, take the following steps.
+
+  1. In TUI mode, use the command
+     ,----
+     | (gdb) layout asm
+     `----
+
+     to show assembly code for the program being debugged. This is
+     necessary when dealing with binary files like verify.o.  If you
+     neglected to run `gdb' in TUI mode, you can enable it with
+     ,----
+     | (gdb) tui enable
+     `----
+  2. Set a breakpoint on the function that verifies the input.
+  3. Run (or on arm64 machines, continue) the program to the
+     breakpoint. You may need to enter a guess for the sentence
+     completion but anything will work to move the program forward.
+     Note that you may need to use the <Ctrl>-l keyboard shortcut
+     to clean up any jumbled output you see in the terminal.
+  4. Once the verifying function is entered, look for a string
+     comparison to be done, likely using the 'strcmp()' function and
+     use of the x86-64 'call' instruction.  Step forwards to just before
+     this function call. Use the 'stepi' instruction to step forward by
+     single assembly instructions or 'nexti' to move single instructions
+     forward bypassing function 'call' instructions.
+  5. Immediately preceding this call will be some movement of pointers
+     into registers which are the arguments to the function. You should
+     inspect the strings pointed to by these registers.
+  6. You can interpret and display the values of registers as various
+     types in 'gdb' using the 'print' command and C-style casting.
+     Examples are below. Note register names are preceded with a
+     dollar sign ($).
+     ,----
+     |    (gdb) print (int) $rax
+     |    $1 = -8448
+     |    (gdb) print (char *) $rax
+     |    $2 = 0x7fffffffdf00 "cruft\n"
+     |    (gdb) print (double) $rax
+     |    $3 = 140737488346880
+     |    (gdb) print (int *) $rax
+     |    $4 = (int *) 0x7fffffffdf00
+     `----
+  7. The 'x' command in GDB is also useful in these settings as it
+     examines memory at a specified location: if a register contains a
+     pointer, the contents of the memory at that location are printed.
+     ,----
+     | (gdb) p $rsi                    # print value in rsi
+     | $1 = 93824992239674
+     | (gdb) x $rsi                    # examine location pointed to by rsi
+     | 0x55555555603a: 0x65737361
+     | (gdb) x/d $rsi                  # examine location as decimal
+     | 0x55555555603a: 1702064993
+     | (gdb) x/s $rsi                  # examine location as a string
+     | 0x55555555603a: "some string\n"
+     `----
+  8. Look particularly at "argument" registers which are used to pass
+     information to functions like 'strcmp()'. Some of these should
+     contain pointers to the string entered and the correct string.
+
+  Give the correct string to enter to complete the sentence.
