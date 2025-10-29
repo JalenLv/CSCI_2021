@@ -51,13 +51,15 @@ int main(int argc, char **argv) {
             chosen_find_func = list_find_student;
         }
 
-        // TODO Start timing here
+        // Start timing here
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
 
         for (int i = 0; i < 2 * num_elems; i++) {
             results[i] = chosen_find_func(&list, i);
         }
 
-        // TODO Stop timing here
+        // Stop timing here
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
 
         list_free(&list);
     }
@@ -70,13 +72,15 @@ int main(int argc, char **argv) {
             arr[i] = i * 2;
         }
 
-        // TODO Start timing here
+        // Start timing here
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
 
         for (int i = 0; i < 2 * num_elems; i++) {
             results[i] = array_find(arr, num_elems, i);
         }
 
-        // TODO Stop timing here
+        // Stop timing here
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
 
         free(arr);
     }

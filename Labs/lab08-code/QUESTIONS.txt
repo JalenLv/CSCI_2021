@@ -34,13 +34,13 @@ QUIZ: Linked List Analysis
   - ( ) It is incorrect as it will not return the correct location of an
         element in all possible cases.
   - ( ) It does a single traversal of the linked list elements.
-  - ( ) It calls 'list_get()' each time it reaches a new position in the list.
+  - (X) It calls 'list_get()' each time it reaches a new position in the list.
   - ( ) It is both correct and will have the best possible performance.
 
   What is the asymptotic complexity of the 'list_find' function?
   Reminder: Here 'n' is the number of elements in the linked list.
   - ( ) O(n)
-  - ( ) O(n^2)
+  - (X) O(n^2)
   - ( ) O(n^3)
   - ( ) O(n * log(n))
 
@@ -104,7 +104,7 @@ QUIZ: Observing Array Performance
   SLOWEST <--------------------------------> FASTEST
   - ( ) array_find > list_find_student > list_find
   - ( ) list_find > array_find > list_find_student
-  - ( ) list_find > list_find_student > array_find
+  - (X) list_find > list_find_student > array_find
   - ( ) The execution times are all roughly the same
 
   What accounts for the difference in execution speed of 'list_find_student' vs
@@ -113,5 +113,5 @@ QUIZ: Observing Array Performance
   - ( ) Searching the array is O(n^2) while searching the linked list is O(n).
   - ( ) Linked list elements are contiguous in memory while array elements are
         scattered across different locations.
-  - ( ) Array elements are contiguous in memory while linked list elements are
+  - (X) Array elements are contiguous in memory while linked list elements are
         scattered across different locations.
