@@ -1,0 +1,20 @@
+{
+    "name": "Lab 08",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "List Search Performance",
+            "description": "Uses student's code to search repeatedly search a linked list. Checks that the searches work correctly and complete in a reasonable amount of time. Note that 'sed' is used to elide the observed running time, as it can vary and is not important to the test's success",
+            "input_file": "test_cases/input/list_find_student.txt",
+            "output_file": "test_cases/output/list_find_student.txt",
+            "points": 0.5,
+            "timeout": 10
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+$ ./list_main list_find_student 30000 | sed 's/[0-9]\+\.[0-9]\+e[\+\-][0-9]\+/X/'
+Total elapsed time: X sec
+$ exit
+exit

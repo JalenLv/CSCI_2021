@@ -1,0 +1,117 @@
+                           __________________
+
+                            LAB 08 QUESTIONS
+                           __________________
+
+Lab Instructions
+================
+
+  Follow the instructions below to experiment with topics related to
+  this lab.
+  - For sections marked QUIZ, fill in an (X) for the appropriate
+    response in this file. Use the command 'make test-quiz' to see if
+    all of your answers are correct.
+  - For sections marked CODE, complete the code indicated. Use the
+    command 'make test-code' to check if your code is complete.
+  - DO NOT CHANGE any parts of this file except the QUIZ sections as it
+    may interfere with the tests otherwise.
+  - If your 'QUESTIONS.txt' file seems corrupted, restore it by copying
+    over the 'QUESTIONS.txt.bak' backup file.
+  - When you complete the exercises, check your answers with 'make test'
+    and if all is well, create a zip file with 'make zip' and upload it
+    to Gradescope. Ensure that the Autograder there reflects your local
+    results.
+  - IF YOU WORK IN A GROUP only one member needs to submit and then add
+    the names of their group.
+
+
+QUIZ: Linked List Analysis
+==========================
+
+  Study the code in the linked list files, particularly 'list_funcs.c'.
+
+  What is true about the implementation of the 'list_find' function?
+  - ( ) It is incorrect as it will not return the correct location of an
+        element in all possible cases.
+  - ( ) It does a single traversal of the linked list elements.
+  - ( ) It calls 'list_get()' each time it reaches a new position in the list.
+  - ( ) It is both correct and will have the best possible performance.
+
+  What is the asymptotic complexity of the 'list_find' function?
+  Reminder: Here 'n' is the number of elements in the linked list.
+  - ( ) O(n)
+  - ( ) O(n^2)
+  - ( ) O(n^3)
+  - ( ) O(n * log(n))
+
+CODE: Improving the Linked List
+===============================
+
+  Start by studying the code in the 'list_main.c' file. This program tests out
+  the execution speed of different search scenarios by creating a data structure
+  (either a linked list or an array) of a specified size and then repeatedly
+  searching that data structure.
+
+  Complete the 'TODO' items in the 'list_main.c' file. Specifically, you will
+  need to add code to record start and end timestamps. See this lab's page on
+  Canvas for more information on how to do this.
+
+  Next, observe the performance of the provided 'list_find' function using
+  the 'list_main' program. This program takes in two command-line arguments:
+    1. The search algorithm to use (here, 'list_find')
+    2. The size of the linked list to search
+
+  For example, to test out 'list_find' on a linked list of 1000 elements:
+  ,-------
+  | > make list_main
+  | > ./list_main list_find 1000
+  `-------
+
+  Write your own version of a linked list search by completing the
+  'list_find_student' function within the 'list_funcs_student.c' file. You
+  should design this code so that it runs significantly faster than the
+  search algorithm we provided to you.
+
+  To pass the test for this part of the lab, your code not only needs to
+  produce the correct result, it also needs be fast enough to complete before
+  the timeout expires (the list search code given to you will not be able to do
+  this).
+
+  To test out your code, use 'list_find_student' as the first command-line
+  argument to the 'list_main' program. For example:
+  ,-----
+  | > make list_main
+  | > ./list_main list_find_student 1000
+  `-----
+
+QUIZ: Observing Array Performance
+=================================
+
+  Next, observe how searching an array performs compared to searching a linked
+  list. Use 'array_find' as the first command-line argument to 'list_main' to
+  perform a search of an array of the specified size.
+
+  For example, to test out a search of an array of 50000 elements:
+  ,-----
+  | > ./list_main array_find 50000
+  `-----
+
+  Make sure to use a large enough size so that you can observe a reliable
+  pattern in your results.
+
+  When searching *the same* number of total elements, what are the relative
+  execution times of the three implementations featured in this lab?
+  SLOWEST <--------------------------------> FASTEST
+  - ( ) array_find > list_find_student > list_find
+  - ( ) list_find > array_find > list_find_student
+  - ( ) list_find > list_find_student > array_find
+  - ( ) The execution times are all roughly the same
+
+  What accounts for the difference in execution speed of 'list_find_student' vs
+  the 'array_find' scenario?
+  - ( ) Searching the linked list is O(n^2) while searching the array is O(n).
+  - ( ) Searching the array is O(n^2) while searching the linked list is O(n).
+  - ( ) Linked list elements are contiguous in memory while array elements are
+        scattered across different locations.
+  - ( ) Array elements are contiguous in memory while linked list elements are
+        scattered across different locations.
