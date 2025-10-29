@@ -1,0 +1,90 @@
+{
+    "name": "Project 3",
+    "timeout": 10,
+    "tests": [
+        {
+            "name": "bitXor",
+            "description": "Tests the solution to the bitXor puzzle",
+            "command": "qemu-x86_64 ./btest bitXor",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 1
+        },
+        {
+            "name": "bitAnd",
+            "description": "Tests the solution to the bitAnd puzzle",
+            "command": "qemu-x86_64 ./btest bitAnd",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 1
+        },
+        {
+            "name": "allOddBits",
+            "description": "Tests the solution to the allOddBits puzzle",
+            "command": "qemu-x86_64 ./btest allOddBits",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 2
+        },
+        {
+            "name": "floatIsEqual",
+            "description": "Tests the solution to the floatIsEqual puzzle",
+            "command": "qemu-x86_64 ./btest floatIsEqual",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 2
+        },
+        {
+            "name": "anyEvenBit",
+            "description": "Tests the solution to the anyEvenBit puzzle",
+            "command": "qemu-x86_64 ./btest anyEvenBit",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 2
+        },
+        {
+            "name": "isPositive",
+            "description": "Tests the solution to the isPositive puzzle",
+            "command": "qemu-x86_64 ./btest isPositive",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 2
+        },
+        {
+            "name": "replaceByte",
+            "description": "Tests the solution to the replaceByte puzzle",
+            "command": "qemu-x86_64 ./btest replaceByte",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 3
+        },
+        {
+            "name": "isLess",
+            "description": "Tests the solution to the isLess puzzle",
+            "command": "qemu-x86_64 ./btest isLess",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 3
+        },
+        {
+            "name": "rotateLeft",
+            "description": "Tests the solution to the rotateLeft puzzle",
+            "command": "qemu-x86_64 ./btest rotateLeft",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 3
+        },
+        {
+            "name": "bitMask",
+            "description": "Tests the solution to the bitMask puzzle",
+            "command": "qemu-x86_64 ./btest bitMask",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 3
+        },
+        {
+            "name": "isPower2",
+            "description": "Tests the solution to the isPower2 puzzle",
+            "command": "qemu-x86_64 ./btest isPower2",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 4
+        },
+        {
+            "name": "floatScale2",
+            "description": "Tests the solution to the floatScale2 puzzle",
+            "command": "qemu-x86_64 ./btest floatScale2",
+            "output_file": "test_cases/output/empty.txt",
+            "points": 4
+        }
+    ]
+}
