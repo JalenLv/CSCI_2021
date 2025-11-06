@@ -29,7 +29,8 @@
 #   Rating: 1
 .global bitXor
 bitXor:
-    movl $2, %eax
+    movl %edi, %eax
+    xorl %esi, %eax
     ret
 
 # bitAnd - Compute x&y
@@ -37,7 +38,8 @@ bitXor:
 #   Rating: 1
 .global bitAnd
 bitAnd:
-    movl $2, %eax
+    movl %edi, %eax
+    andl %esi, %eax
     ret
 
 # allOddBits - Return 1 if all odd-numbered bits in word set to 1
@@ -46,7 +48,10 @@ bitAnd:
 #   Rating: 2
 .global allOddBits
 allOddBits:
-    movl $2, %eax
+    notl %edi
+    testl $0xAAAAAAAA, %edi
+    setz %al
+    movzbl %al, %eax
     ret
 
 # floatIsEqual - Compute f == g for floating point arguments f and g.
@@ -58,7 +63,60 @@ allOddBits:
 #   Rating: 2
 .global floatIsEqual
 floatIsEqual:
-    movl $2, %eax
+    # Check for NaN
+    # Extract exponents and fractions
+    # %r8d = (uf >> 23) & 0xFF
+    movl %edi, %r8d
+    shrl $23, %r8d
+    andl $0xFF, %r8d
+    # %r9d = uf & 0x7FFFFF
+    movl %edi, %r9d
+    andl $0x7FFFFF, %r9d
+    # %r10d = (ug >> 23) & 0xFF
+    movl %esi, %r10d
+    shrl $23, %r10d
+    andl $0xFF, %r10d
+    # %r11d = ug & 0x7FFFFF
+    movl %esi, %r11d
+    andl $0x7FFFFF, %r11d
+
+    # Check for NaN conditions
+    cmpl $0xFF, %r8d        # check exp_f == 0xFF
+    jne FIE_L1              # if exp_f != 0xFF, check exp_g == 0xFF
+    testl %r9d, %r9d        # if exp_f == 0xFF, check frac_f != 0
+    jnz FIE_RET_ZERO_4_NAN  # if frac_f != 0, return 0
+                            # if frac_f == 0, continue to check g
+FIE_L1:
+    cmpl $0xFF, %r10d       # check exp_g == 0xFF
+    jne FIE_L2              # if exp_g != 0xFF, check pm zero
+    testl %r11d, %r11d      # if exp_g == 0xFF, check frac_g != 0
+    jnz FIE_RET_ZERO_4_NAN  # if frac_g != 0, return 0
+                            # if frac_g == 0, continue to check pm zero
+FIE_L2:
+    # Check for pm zero
+    # %r8d = uf << 1
+    movl %edi, %r8d
+    shll $1, %r8d
+    # %r9d = ug << 1
+    movl %esi, %r9d
+    shll $1, %r9d
+    # Compare shifted values
+    testl %r8d, %r8d            # check uf << 1 == 0
+    jnz FIE_L3                  # if uf << 1 != 0, continue to compare normally
+    testl %r9d, %r9d            # if uf << 1 == 0, check ug << 1 == 0
+    jz FIE_RET_ONE_4_PM_ZERO    # if ug << 1 == 0, return 1
+                                # if ug << 1 != 0, continue to compare normally
+FIE_L3:
+    # Normal comparison
+    cmpl %esi, %edi     # compare uf and ug
+    sete %al
+    movzbl %al, %eax
+    ret
+FIE_RET_ZERO_4_NAN:
+    movl $0, %eax
+    ret
+FIE_RET_ONE_4_PM_ZERO:
+    movl $1, %eax
     ret
 
 # anyEvenBit - Return 1 if any even-numbered bit in word set to 1
@@ -67,7 +125,10 @@ floatIsEqual:
 #   Rating: 2
 .global anyEvenBit
 anyEvenBit:
-    movl $2, %eax
+    andl $0x55555555, %edi
+    testl %edi, %edi
+    setnz %al
+    movzbl %al, %eax
     ret
 
 # isPositive - return 1 if x > 0, return 0 otherwise
@@ -75,7 +136,9 @@ anyEvenBit:
 #   Rating: 2
 .global isPositive
 isPositive:
-    movl $2, %eax
+    cmpl $0, %edi
+    setg %al
+    movzbl %al, %eax
     ret
 
 # replaceByte(x,n,c) - Replace byte n in x with c
@@ -85,7 +148,19 @@ isPositive:
 #   Rating: 3
 .global replaceByte
 replaceByte:
-    movl $2, %eax
+    # %edi = x, %esi = n, %edx = c
+    # %ecx = shift = n << 3
+    movl %esi, %ecx
+    sall $3, %ecx
+    # Prepare ~(0xFF << shift) & x
+    movl $0xFF, %eax
+    sall %cl, %eax
+    notl %eax
+    andl %edi, %eax
+    # Prepare (c << shift)
+    sall %cl, %edx
+    # Combine both parts
+    orl %edx, %eax
     ret
 
 # isLess - if x < y  then return 1, else return 0
@@ -93,7 +168,9 @@ replaceByte:
 #   Rating: 3
 .global isLess
 isLess:
-    movl $2, %eax
+    cmpl %esi, %edi
+    setl %al
+    movzbl %al, %eax
     ret
 
 # rotateLeft - Rotate x to the left by n
@@ -102,7 +179,9 @@ isLess:
 #   Rating: 3
 .global rotateLeft
 rotateLeft:
-    movl $2, %eax
+    movl %edi, %eax
+    movl %esi, %ecx
+    roll %cl, %eax
     ret
 
 # bitMask - Generate a mask consisting of all 1's
@@ -113,7 +192,20 @@ rotateLeft:
 #   Rating: 3
 .global bitMask
 bitMask:
-    movl $2, %eax
+    # %edi = highbit, %esi = lowbit
+    # %edi = high_mask = ~((~0) << highbit << 1)
+    movl %edi, %ecx
+    movl $-1, %edi
+    sall %cl, %edi
+    sall $1, %edi
+    notl %edi
+    # %esi = low_mask = (~0) << lowbit
+    movl %esi, %ecx
+    movl $-1, %esi
+    sall %cl, %esi
+    # Combine
+    andl %edi, %esi
+    movl %esi, %eax
     ret
 
 # floatScale2 - Return bit-level equivalent of expression 2*f for
@@ -125,7 +217,62 @@ bitMask:
 #   Rating: 4
 .global floatScale2
 floatScale2:
-    movl $2, %eax
+    # Extract exponent, fraction
+    # %r8d = exp = (uf >> 23) & 0xFF
+    movl %edi, %r8d
+    shrl $23, %r8d
+    andl $0xFF, %r8d
+    # %r9d = frac = uf & 0x7FFFFF
+    movl %edi, %r9d
+    andl $0x7FFFFF, %r9d
+
+    # Check for pm zero
+    testl %r8d, %r8d            # check exp == 0
+    jnz FS2_L1                  # if exp != 0, continue to check for NaN
+    testl %r9d, %r9d            # if exp == 0, check frac == 0
+    jnz FS2_L1                  # if frac != 0, continue to check for NaN
+    movl %edi, %eax             # if pm zero, return uf
+    ret
+FS2_L1:
+    # Check for NaN
+    cmpl $0xFF, %r8d        # check exp == 0xFF
+    jne FS2_L2              # if exp != 0xFF, continue to check for denormals
+    movl %edi, %eax         # if exp == 0xFF, return uf
+    ret
+FS2_L2:
+    # Check for denormals
+    testl %r8d, %r8d        # check exp == 0
+    jnz FS2_L3              # if exp != 0, continue to normal case
+    testl %r9d, %r9d        # if exp == 0, check frac == 0
+    jz FS2_L3               # if frac == 0, continue to normal case
+                            # if frac != 0, denormal case
+    movl $22, %ecx          # check (frac >> 22) & 1 == 0
+    movl %r9d, %eax
+    shrl %cl, %eax
+    andl $1, %eax
+    jz FS2_L4               # if (frac >> 22) & 1 == 0, the result will still be denormal
+                            # if (frac >> 22) & 1 == 1, the result will become normal
+    movl %edi, %eax         # result = (uf & 0x80000000) | (1 << 23) | ((frac << 1) & 0x7FFFFF)
+    andl $0x80000000, %eax
+    shll $1, %r9d
+    andl $0x7FFFFF, %r9d
+    orl $0x800000, %r9d
+    orl %r9d, %eax
+    ret
+FS2_L4:
+    shll $1, %r9d           # result = (uf & 0x80000000) | (frac << 1)
+    movl %edi, %eax
+    andl $0x80000000, %eax
+    orl %r9d, %eax
+    ret
+FS2_L3:
+    # Normal case
+    incl %r8d               # result = (uf & 0x80000000) | ((exp + 1) << 23) | frac
+    shll $23, %r8d
+    movl %edi, %eax
+    andl $0x80000000, %eax
+    orl %r8d, %eax
+    orl %r9d, %eax
     ret
 
 # isPower2 - returns 1 if x is a power of 2, and 0 otherwise
@@ -134,6 +281,16 @@ floatScale2:
 #   Rating: 4
 .global isPower2
 isPower2:
-    movl $2, %eax
+    cmpl $0, %edi
+    jle IP2_RET_ZERO
+    # %eax = (x - 1) & x
+    movl %edi, %eax
+    decl %eax
+    andl %edi, %eax
+    testl %eax, %eax
+    jnz IP2_RET_ZERO
+    movl $1, %eax
     ret
-
+IP2_RET_ZERO:
+    movl $0, %eax
+    ret
