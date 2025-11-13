@@ -51,11 +51,10 @@ int main(int argc, char *argv[]) {
     int length = atoi(argv[1]);
     int max_iter = atoi(argv[2]);
 
-    // TODO Uncomment these declarations and use these variables below
     // Variables for timing
-    // timespec_t start;
-    // timespec_t end;
-    // double cpu_time;
+    timespec_t start;
+    timespec_t end;
+    double cpu_time;
 
     // sums of elements in structs
     int sum_a;
@@ -71,7 +70,8 @@ int main(int argc, char *argv[]) {
         int_field_arr1[i].b = -i;
     }
 
-    // TODO: START TIMING HERE
+    // START TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     sum_a = 0;    // Initialize sum variables
     sum_b = 0;
@@ -84,9 +84,12 @@ int main(int argc, char *argv[]) {
         }
     }
     sum_a += sum_b;
-    // TODO: STOP TIMING HERE
+    // STOP TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // TODO: COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    // COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    cpu_time = get_elapsed_time_sec(&start, &end);
+    printf(FORMAT, "int_field_base", cpu_time, sum_a);
 
     free(int_field_arr1);    // free memory
 
@@ -103,7 +106,8 @@ int main(int argc, char *argv[]) {
         arr_field1.b_arr[i] = -i;
     }
 
-    // TODO: START TIMING HERE
+    // START TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     sum_a = 0;    // Initialize sum variables
     sum_b = 0;
@@ -117,9 +121,12 @@ int main(int argc, char *argv[]) {
     }
     sum_a += sum_b;
 
-    // TODO: STOP TIMING HERE
+    // STOP TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // TODO: COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    // COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    cpu_time = get_elapsed_time_sec(&start, &end);
+    printf(FORMAT, "arr_field_base", cpu_time, sum_a);
 
     free(arr_field1.a_arr);    // free memory
     free(arr_field1.b_arr);
@@ -134,7 +141,8 @@ int main(int argc, char *argv[]) {
         int_field_arr2[i].b = -i;
     }
 
-    // TODO: START TIMING HERE
+    // START TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     sum_a = 0;    // Initialize sum variables
     sum_b = 0;
@@ -146,9 +154,12 @@ int main(int argc, char *argv[]) {
     }
     sum_a += sum_b;
 
-    // TODO: STOP TIMING HERE
+    // STOP TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // TODO: COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    // COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    cpu_time = get_elapsed_time_sec(&start, &end);
+    printf(FORMAT, "int_field_optm", cpu_time, sum_a);
 
     free(int_field_arr2);    // free memory
 
@@ -165,7 +176,8 @@ int main(int argc, char *argv[]) {
         arr_field2.b_arr[i] = -i;
     }
 
-    // TODO: START TIMING HERE
+    // START TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     sum_a = 0;    // Initialize sum variables
     sum_b = 0;
@@ -177,9 +189,12 @@ int main(int argc, char *argv[]) {
     }
     sum_a += sum_b;
 
-    // TODO: STOP TIMING HERE
+    // STOP TIMING HERE
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // TODO: COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    // COMPUTE CPU TIME AND PRINT IT using the provided FORMAT string
+    cpu_time = get_elapsed_time_sec(&start, &end);
+    printf(FORMAT, "arr_field_optm", cpu_time, sum_a);
 
     free(arr_field2.a_arr);    // free memory
     free(arr_field2.b_arr);

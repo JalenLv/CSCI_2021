@@ -76,7 +76,7 @@ Relative Speed of Struct Layouts
   |   ------SLOWEST--------------------------------------------FASTEST-----
   | - ( ) arr_field_base > arr_field_optm > int_field_base > int_field_optm
   | - ( ) int_field_base > int_field_optm > arr_field_base > arr_field_optm
-  | - ( ) arr_field_base > int_field_base > arr_field_optm > int_field_optm
+  | - (X) arr_field_base > int_field_base > arr_field_optm > int_field_optm
   | - ( ) int_field_base > arr_field_base > int_field_optm > arr_field_optm
   `----
 
@@ -100,7 +100,7 @@ int_field_base VS arr_field_base
     'arr_field_base' which will make it slower.
   - ( ) 'arr_field_base' uses more memory to store its numbers than
     'int_field_base' and this additional memory increases speed.
-  - ( ) 'int_field_base' has a memory layout that is ABABABAB so when adding A
+  - (X) 'int_field_base' has a memory layout that is ABABABAB so when adding A
     elements, there is a "stride" through memory. 'arr_field_base' has a layout
     like 'AAAAABBBBB' so adding elements has no stride.
   - ( ) 'int_field_base' uses struct field access. The assembly instructions to
@@ -118,11 +118,11 @@ BASE vs OPTM versions
   Select ALL of the items below that are accomplished with this
   transformation.
 
-  - ( ) Fewer loop checks/increments are needed as there is only one
+  - (X) Fewer loop checks/increments are needed as there is only one
     loop instead of two.
   - ( ) The number of loop iterations is lowered for all loops in the
     optm version.
-  - ( ) The memory stride is eliminated for the int_field_optm as both
+  - (X) The memory stride is eliminated for the int_field_optm as both
     a/b elements are added each iteration.
   - ( ) The algorithmic complexity is reduced from O(N^2) in the "base"
     to O(N) in the "optm" version.
