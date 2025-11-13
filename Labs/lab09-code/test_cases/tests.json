@@ -1,0 +1,23 @@
+{
+    "name": "Lab 09",
+    "tests": [
+        {
+            "name": "Quiz: QUESTIONS.txt",
+            "description": "Determines if the answers in QUESTIONS.txt are correct",
+            "command": "test_cases/resources/socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Code: struct_stride",
+            "description": "Runs struct_stride once and checks that the output format matches what is expected. Also checks that the timing results are ordered properly. From slowest to fastest should be: int_field_base, arr_field_base, int_field_optm, arr_field_optm.",
+            "timeout": 25,
+            "input_file": "test_cases/input/struct_stride.txt",
+            "output_file": "test_cases/output/struct_stride.txt",
+            "environment": {
+                "RESULT_FILE": "test_results/out.tmp"
+            },
+            "points": 0.5
+        }
+    ]
+}
