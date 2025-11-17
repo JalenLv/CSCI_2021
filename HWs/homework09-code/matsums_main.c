@@ -60,7 +60,6 @@ int main(int argc, char *argv[]) {
     // TODO UNCOMMENT BLOCK BELOW ONCE opt_col_sum() HAS BEEN WRITTEN
 
     // OPT_COL SUMS
-    /*
     vector_t ocsums;
     vector_init(&ocsums, mat.cols);
     vector_fill_sequential(&ocsums);
@@ -81,7 +80,6 @@ int main(int argc, char *argv[]) {
         }
     }
     vector_free_data(&ocsums);
-    */
 
     matrix_free_data(&mat);    // clean up data
     vector_free_data(&rsums);

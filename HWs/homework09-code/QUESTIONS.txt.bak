@@ -20,8 +20,6 @@ PROBLEM 1: Code Overview
   For the matrix type 'matrix_t' with R rows and C columns, how is a 2D
   matrix actually laid out in memory?
 
-  matrix_t is a struct that contains # of rows, # of columns, and a pointer to a 1D array of elements. The elements are stored in row-major order in a contiguous block of memory allocated on the heap.
-
 
 (B) Getting and Setting Elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,9 +31,6 @@ PROBLEM 1: Code Overview
   Describe how one would get element (R,C) of 'matrix_t' or set it to
   value Z.  Why are these mechanisms not functions?
 
-  Get: MGET(mat, R, C)
-  Set: MSET(mat, R, C, Z)
-  These mechanisms are macros defined in 'matvec.h'. They are not functions to avoid the overhead of function calls, allowing for inline expansion and better performance when accessing or modifying matrix elements.
 
 PROBLEM 2: Timing Rows vs Columns
 =================================
@@ -55,15 +50,6 @@ PROBLEM 2: Timing Rows vs Columns
 
   Be aware of the program's use of scientific notation. For example, the
   number "1.23e-01" signifies 1.23 x 10^-1.
-
-  Example runs:
-    root@98811a7e9218:/workspaces/CSCI_2021/HWs/homework09-code# ./matsums_main 16000 8000
-      row_sums CPU usage: 6.5686e-02 sec
-      col_sums CPU usage: 3.5591e-01 sec
-    root@98811a7e9218:/workspaces/CSCI_2021/HWs/homework09-code# ./matsums_main 16000 16000
-      row_sums CPU usage: 1.3202e-01 sec
-      col_sums CPU usage: 8.6680e-01 sec
-  Note: On large matrices, row_sums is significantly faster than col_sums.
 
 
 (B) row_sums vs col_sums speed
@@ -93,31 +79,3 @@ PROBLEM 3: opt_col_sums()
 
   Paste your source code and a copy of the timing results of running
   'matsums_main' on a 16000 by 8000 matrix.
-
-  Src:
-    int opt_col_sums(matrix_t *mat, vector_t *csums) {
-        if (mat->cols != csums->len) {
-            printf("size mismatch: mat->cols %ld != rsums->len %ld\n", mat->cols, csums->len);
-            return 1;
-        }
-
-        int csums_local[csums->len];
-        for (int i = 0; i < sizeof(csums_local) / sizeof(csums_local[0]); i++) {
-            csums_local[i] = 0;
-        }
-        for (int i = 0; i < mat->rows; i++) {
-            for (int j = 0; j < mat->cols; j++) {
-                csums_local[j] += MGET(mat, i, j);
-            }
-        }
-        for (int i = 0; i < csums->len; i++) {
-            VSET(csums, i, csums_local[i]);
-        }
-
-        return 0;
-    }
-Timing Results:
-  root@98811a7e9218:/workspaces/CSCI_2021/HWs/homework09-code# ./matsums_main 16000 8000
-        row_sums CPU usage: 6.6128e-02 sec
-        col_sums CPU usage: 3.5158e-01 sec
-        opt_col_sums CPU usage: 1.1147e-01 sec

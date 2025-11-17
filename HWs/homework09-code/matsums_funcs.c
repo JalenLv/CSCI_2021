@@ -42,6 +42,23 @@ int col_sums(matrix_t *mat, vector_t *csums) {
 // col_sums() and get close to row_sums() for performance but not likely to
 // match it.
 int opt_col_sums(matrix_t *mat, vector_t *csums) {
-    // TODO Fill in code
-    return 1;
+    if (mat->cols != csums->len) {
+        printf("size mismatch: mat->cols %ld != rsums->len %ld\n", mat->cols, csums->len);
+        return 1;
+    }
+
+    int csums_local[csums->len];
+    for (int i = 0; i < sizeof(csums_local) / sizeof(csums_local[0]); i++) {
+        csums_local[i] = 0;
+    }
+    for (int i = 0; i < mat->rows; i++) {
+        for (int j = 0; j < mat->cols; j++) {
+            csums_local[j] += MGET(mat, i, j);
+        }
+    }
+    for (int i = 0; i < csums->len; i++) {
+        VSET(csums, i, csums_local[i]);
+    }
+
+    return 0;
 }
