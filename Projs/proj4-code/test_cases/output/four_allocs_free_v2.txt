@@ -1,0 +1,195 @@
+{
+    // Allocates 4 times again but free()'s in a different order. This
+    // prevents some merging and requires different cases of merging
+    // above/below.
+
+    void *ptr[16] = {};
+    int len = 0;
+
+    ptr[len++] = el_malloc(128);
+    printf("\nMALLOC 0\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(200);
+    printf("\nMALLOC 1\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(64);
+    printf("\nMALLOC 2\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(312);
+    printf("\nMALLOC 3\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    el_free(ptr[1]);
+    printf("\nFREE 1\n");
+    el_print_stats();
+    printf("\n");
+
+    el_free(ptr[0]);
+    printf("\nFREE 0\n");
+    el_print_stats();
+    printf("\n");
+
+    el_free(ptr[3]);
+    printf("\nFREE 3\n");
+    el_print_stats();
+    printf("\n");
+
+    el_free(ptr[2]);
+    printf("\nFREE 2\n");
+    el_print_stats();
+    printf("\n");
+}
+
+MALLOC 0
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3928}
+  [  0] head @ 0x6000000000a8 {state: a  size:  3888}
+        foot @ 0x600000000ff8 {size:  3888}
+USED LIST: {length:   1  bytes:   168}
+  [  0] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+
+MALLOC 1
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3688}
+  [  0] head @ 0x600000000198 {state: a  size:  3648}
+        foot @ 0x600000000ff8 {size:  3648}
+USED LIST: {length:   2  bytes:   408}
+  [  0] head @ 0x6000000000a8 {state: u  size:   200}
+        foot @ 0x600000000190 {size:   200}
+  [  1] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+
+MALLOC 2
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3584}
+  [  0] head @ 0x600000000200 {state: a  size:  3544}
+        foot @ 0x600000000ff8 {size:  3544}
+USED LIST: {length:   3  bytes:   512}
+  [  0] head @ 0x600000000198 {state: u  size:    64}
+        foot @ 0x6000000001f8 {size:    64}
+  [  1] head @ 0x6000000000a8 {state: u  size:   200}
+        foot @ 0x600000000190 {size:   200}
+  [  2] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: 0x6000000001b8
+
+MALLOC 3
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3232}
+  [  0] head @ 0x600000000360 {state: a  size:  3192}
+        foot @ 0x600000000ff8 {size:  3192}
+USED LIST: {length:   4  bytes:   864}
+  [  0] head @ 0x600000000200 {state: u  size:   312}
+        foot @ 0x600000000358 {size:   312}
+  [  1] head @ 0x600000000198 {state: u  size:    64}
+        foot @ 0x6000000001f8 {size:    64}
+  [  2] head @ 0x6000000000a8 {state: u  size:   200}
+        foot @ 0x600000000190 {size:   200}
+  [  3] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: 0x6000000001b8
+ptr[ 3]: 0x600000000220
+
+FREE 1
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3472}
+  [  0] head @ 0x6000000000a8 {state: a  size:   200}
+        foot @ 0x600000000190 {size:   200}
+  [  1] head @ 0x600000000360 {state: a  size:  3192}
+        foot @ 0x600000000ff8 {size:  3192}
+USED LIST: {length:   3  bytes:   624}
+  [  0] head @ 0x600000000200 {state: u  size:   312}
+        foot @ 0x600000000358 {size:   312}
+  [  1] head @ 0x600000000198 {state: u  size:    64}
+        foot @ 0x6000000001f8 {size:    64}
+  [  2] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+
+FREE 0
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3640}
+  [  0] head @ 0x600000000000 {state: a  size:   368}
+        foot @ 0x600000000190 {size:   368}
+  [  1] head @ 0x600000000360 {state: a  size:  3192}
+        foot @ 0x600000000ff8 {size:  3192}
+USED LIST: {length:   2  bytes:   456}
+  [  0] head @ 0x600000000200 {state: u  size:   312}
+        foot @ 0x600000000358 {size:   312}
+  [  1] head @ 0x600000000198 {state: u  size:    64}
+        foot @ 0x6000000001f8 {size:    64}
+
+
+FREE 3
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3992}
+  [  0] head @ 0x600000000200 {state: a  size:  3544}
+        foot @ 0x600000000ff8 {size:  3544}
+  [  1] head @ 0x600000000000 {state: a  size:   368}
+        foot @ 0x600000000190 {size:   368}
+USED LIST: {length:   1  bytes:   104}
+  [  0] head @ 0x600000000198 {state: u  size:    64}
+        foot @ 0x6000000001f8 {size:    64}
+
+
+FREE 2
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  4096}
+  [  0] head @ 0x600000000000 {state: a  size:  4056}
+        foot @ 0x600000000ff8 {size:  4056}
+USED LIST: {length:   0  bytes:     0}

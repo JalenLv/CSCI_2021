@@ -1,0 +1,315 @@
+{
+    // Stress testing with many malloc()'s / free()'s. More thoroughly
+    // tests combinations of calls and sequences. Implementations that
+    // may have appeared correct in simple tests may buckle under such
+    // added stress.
+
+    void *ptr[16] = {};
+    int len = 0;
+
+    ptr[len++] = el_malloc(128);
+    ptr[len++] = el_malloc(256);
+    ptr[len++] = el_malloc(64);
+    ptr[len++] = el_malloc(200);
+    printf("MALLOC 1-4\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    el_free(ptr[2]);
+    ptr[2] = NULL;
+    printf("\nFREE 2\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(64);
+    printf("\nMALLOC 5\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    el_free(ptr[1]);
+    ptr[1] = NULL;
+    printf("\nFREE 1\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(50);
+    ptr[len++] = el_malloc(50);
+    printf("\nMALLOC 6-7\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(100);
+    printf("\nMALLOC 8\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    el_free(ptr[5]);
+    ptr[5] = NULL;
+    el_free(ptr[0]);
+    ptr[0] = NULL;
+    el_free(ptr[6]);
+    ptr[6] = NULL;
+    printf("\nFREE 5,0,6\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(200);
+    ptr[len++] = el_malloc(512);
+    ptr[len++] = el_malloc(16);
+    ptr[len++] = el_malloc(32);
+    printf("\nMALLOC 9,10,11\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+}
+MALLOC 1-4
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3288}
+  [  0] head @ 0x600000000328 {state: a  size:  3248}
+        foot @ 0x600000000ff8 {size:  3248}
+USED LIST: {length:   4  bytes:   808}
+  [  0] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  1] head @ 0x6000000001d0 {state: u  size:    64}
+        foot @ 0x600000000230 {size:    64}
+  [  2] head @ 0x6000000000a8 {state: u  size:   256}
+        foot @ 0x6000000001c8 {size:   256}
+  [  3] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: 0x6000000001f0
+ptr[ 3]: 0x600000000258
+
+FREE 2
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3392}
+  [  0] head @ 0x6000000001d0 {state: a  size:    64}
+        foot @ 0x600000000230 {size:    64}
+  [  1] head @ 0x600000000328 {state: a  size:  3248}
+        foot @ 0x600000000ff8 {size:  3248}
+USED LIST: {length:   3  bytes:   704}
+  [  0] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  1] head @ 0x6000000000a8 {state: u  size:   256}
+        foot @ 0x6000000001c8 {size:   256}
+  [  2] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+
+MALLOC 5
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3288}
+  [  0] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+  [  1] head @ 0x6000000001d0 {state: a  size:    64}
+        foot @ 0x600000000230 {size:    64}
+USED LIST: {length:   4  bytes:   808}
+  [  0] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  1] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  2] head @ 0x6000000000a8 {state: u  size:   256}
+        foot @ 0x6000000001c8 {size:   256}
+  [  3] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+
+FREE 1
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3584}
+  [  0] head @ 0x6000000000a8 {state: a  size:   360}
+        foot @ 0x600000000230 {size:   360}
+  [  1] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+USED LIST: {length:   3  bytes:   512}
+  [  0] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  1] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  2] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: (nil)
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+
+MALLOC 6-7
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3404}
+  [  0] head @ 0x60000000015c {state: a  size:   180}
+        foot @ 0x600000000230 {size:   180}
+  [  1] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+USED LIST: {length:   5  bytes:   692}
+  [  0] head @ 0x600000000102 {state: u  size:    50}
+        foot @ 0x600000000154 {size:    50}
+  [  1] head @ 0x6000000000a8 {state: u  size:    50}
+        foot @ 0x6000000000fa {size:    50}
+  [  2] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  3] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  4] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: (nil)
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+ptr[ 5]: 0x6000000000c8
+ptr[ 6]: 0x600000000122
+
+MALLOC 8
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   2  bytes:  3264}
+  [  0] head @ 0x6000000001e8 {state: a  size:    40}
+        foot @ 0x600000000230 {size:    40}
+  [  1] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+USED LIST: {length:   6  bytes:   832}
+  [  0] head @ 0x60000000015c {state: u  size:   100}
+        foot @ 0x6000000001e0 {size:   100}
+  [  1] head @ 0x600000000102 {state: u  size:    50}
+        foot @ 0x600000000154 {size:    50}
+  [  2] head @ 0x6000000000a8 {state: u  size:    50}
+        foot @ 0x6000000000fa {size:    50}
+  [  3] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  4] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  5] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: (nil)
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+ptr[ 5]: 0x6000000000c8
+ptr[ 6]: 0x600000000122
+ptr[ 7]: 0x60000000017c
+
+FREE 5,0,6
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   3  bytes:  3612}
+  [  0] head @ 0x600000000000 {state: a  size:   308}
+        foot @ 0x600000000154 {size:   308}
+  [  1] head @ 0x6000000001e8 {state: a  size:    40}
+        foot @ 0x600000000230 {size:    40}
+  [  2] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+USED LIST: {length:   3  bytes:   484}
+  [  0] head @ 0x60000000015c {state: u  size:   100}
+        foot @ 0x6000000001e0 {size:   100}
+  [  1] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  2] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+
+POINTERS
+ptr[ 0]: (nil)
+ptr[ 1]: (nil)
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+ptr[ 5]: (nil)
+ptr[ 6]: (nil)
+ptr[ 7]: 0x60000000017c
+
+MALLOC 9,10,11
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   3  bytes:  2692}
+  [  0] head @ 0x600000000638 {state: a  size:  2464}
+        foot @ 0x600000000ff8 {size:  2464}
+  [  1] head @ 0x6000000000f0 {state: a  size:    68}
+        foot @ 0x600000000154 {size:    68}
+  [  2] head @ 0x6000000001e8 {state: a  size:    40}
+        foot @ 0x600000000230 {size:    40}
+USED LIST: {length:   7  bytes:  1404}
+  [  0] head @ 0x6000000005f0 {state: u  size:    32}
+        foot @ 0x600000000630 {size:    32}
+  [  1] head @ 0x6000000005b8 {state: u  size:    16}
+        foot @ 0x6000000005e8 {size:    16}
+  [  2] head @ 0x600000000390 {state: u  size:   512}
+        foot @ 0x6000000005b0 {size:   512}
+  [  3] head @ 0x600000000000 {state: u  size:   200}
+        foot @ 0x6000000000e8 {size:   200}
+  [  4] head @ 0x60000000015c {state: u  size:   100}
+        foot @ 0x6000000001e0 {size:   100}
+  [  5] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  6] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+
+POINTERS
+ptr[ 0]: (nil)
+ptr[ 1]: (nil)
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348
+ptr[ 5]: (nil)
+ptr[ 6]: (nil)
+ptr[ 7]: 0x60000000017c
+ptr[ 8]: 0x600000000020
+ptr[ 9]: 0x6000000003b0
+ptr[10]: 0x6000000005d8
+ptr[11]: 0x600000000610

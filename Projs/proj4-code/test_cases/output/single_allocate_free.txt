@@ -1,0 +1,45 @@
+{
+    // Tests a single allocate followed by freeing that block. The
+    // free()'d block should be merged with the other available block
+    // into a single large available block.
+
+    void *ptr[16] = {};
+    int len = 0;
+
+    ptr[len++] = el_malloc(128);
+    printf("\nMALLOC 0\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    el_free(ptr[0]);
+    printf("\nFREE 0\n");
+    el_print_stats();
+    printf("\n");
+}
+
+MALLOC 0
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3928}
+  [  0] head @ 0x6000000000a8 {state: a  size:  3888}
+        foot @ 0x600000000ff8 {size:  3888}
+USED LIST: {length:   1  bytes:   168}
+  [  0] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+
+FREE 0
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  4096}
+  [  0] head @ 0x600000000000 {state: a  size:  4056}
+        foot @ 0x600000000ff8 {size:  4056}
+USED LIST: {length:   0  bytes:     0}

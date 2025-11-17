@@ -1,0 +1,49 @@
+{
+    // Allocates 3 blocks then tests that required functions like
+    // el_get_header() and el_block_below() correctly calculate the
+    // positions of block parts and adjacent blocks.
+
+    void *ptr[16] = {};
+    int len = 0;
+
+    ptr[len++] = el_malloc(128);
+    ptr[len++] = el_malloc(200);
+    ptr[len++] = el_malloc(64);
+
+    el_blockhead_t *head = el_ctl.used->beg->next;
+    el_blockfoot_t *foot;
+
+    foot = el_get_footer(head);
+    head = el_get_header(foot);
+    print_ptr("used head 0", head);
+    print_ptr("used foot 0", foot);
+
+    head = el_block_below(head);
+    foot = el_get_footer(head);
+    head = el_get_header(foot);
+    print_ptr("used head 1", head);
+    print_ptr("used foot 1", foot);
+
+    head = el_block_below(head);
+    foot = el_get_footer(head);
+    head = el_get_header(foot);
+    print_ptr("used head 2", head);
+    print_ptr("used foot 2", foot);
+
+    head = el_block_below(head);
+    printf("used head below 2 is: %p\n", head);
+
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+}
+used head 0: 0x600000000198
+used foot 0: 0x6000000001f8
+used head 1: 0x6000000000a8
+used foot 1: 0x600000000190
+used head 2: 0x600000000000
+used foot 2: 0x6000000000a0
+used head below 2 is: (nil)
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: 0x6000000001b8

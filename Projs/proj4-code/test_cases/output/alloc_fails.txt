@@ -1,0 +1,76 @@
+{
+    // Allocates 4 times which each succeed. Then attempts to allocate
+    // again for a large block which cannot be allocated. el_malloc()
+    // should return NULL in this case and the heap remains unchanged.
+
+    void *ptr[16] = {};
+    int len = 0;
+
+    ptr[len++] = el_malloc(1000);
+    ptr[len++] = el_malloc(1000);
+    ptr[len++] = el_malloc(1000);
+    ptr[len++] = el_malloc(800);
+    printf("\nMALLOC 4\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+
+    ptr[len++] = el_malloc(512);
+    printf("\nMALLOC 5\n");
+    el_print_stats();
+    printf("\n");
+    printf("POINTERS\n");
+    print_ptrs(ptr, len);
+    printf("should be (nil)\n");
+}
+
+MALLOC 4
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:   136}
+  [  0] head @ 0x600000000f78 {state: a  size:    96}
+        foot @ 0x600000000ff8 {size:    96}
+USED LIST: {length:   4  bytes:  3960}
+  [  0] head @ 0x600000000c30 {state: u  size:   800}
+        foot @ 0x600000000f70 {size:   800}
+  [  1] head @ 0x600000000820 {state: u  size:  1000}
+        foot @ 0x600000000c28 {size:  1000}
+  [  2] head @ 0x600000000410 {state: u  size:  1000}
+        foot @ 0x600000000818 {size:  1000}
+  [  3] head @ 0x600000000000 {state: u  size:  1000}
+        foot @ 0x600000000408 {size:  1000}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x600000000430
+ptr[ 2]: 0x600000000840
+ptr[ 3]: 0x600000000c50
+
+MALLOC 5
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:   136}
+  [  0] head @ 0x600000000f78 {state: a  size:    96}
+        foot @ 0x600000000ff8 {size:    96}
+USED LIST: {length:   4  bytes:  3960}
+  [  0] head @ 0x600000000c30 {state: u  size:   800}
+        foot @ 0x600000000f70 {size:   800}
+  [  1] head @ 0x600000000820 {state: u  size:  1000}
+        foot @ 0x600000000c28 {size:  1000}
+  [  2] head @ 0x600000000410 {state: u  size:  1000}
+        foot @ 0x600000000818 {size:  1000}
+  [  3] head @ 0x600000000000 {state: u  size:  1000}
+        foot @ 0x600000000408 {size:  1000}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x600000000430
+ptr[ 2]: 0x600000000840
+ptr[ 3]: 0x600000000c50
+ptr[ 4]: (nil)
+should be (nil)

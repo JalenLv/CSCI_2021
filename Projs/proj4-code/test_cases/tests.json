@@ -1,0 +1,66 @@
+{
+    "name": "Project 4",
+    "use_valgrind": "y",
+    "tests": [
+        {
+            "name": "Single Allocation",
+            "description": "Tests than an allocation correctly splits the first single block into 2 blocks, one used and one available",
+            "command": "./test_el_malloc \"Single Allocation\"",
+            "output_file": "test_cases/output/single_allocation.txt"
+        },
+        {
+            "name": "Three Allocs",
+            "description": "Tests that 3 allocations in a row correctly split off the main block, leaving 4 blocks. Used x 3 + Available x 1.",
+            "command": "./test_el_malloc \"Three Allocs\"",
+            "output_file": "test_cases/output/three_allocs.txt"
+        },
+        {
+            "name": "Required Basics",
+            "description": "Allocates 3 blocks then tests that required functions like el_get_header() and el_block_below() correctly calculate the positions of block parts and adjacent blocks.",
+            "command": "./test_el_malloc \"Required Basics\"",
+            "output_file": "test_cases/output/required_basics.txt"
+        },
+        {
+            "name": "Single Allocate/Free",
+            "description": "Tests a single allocate followed by freeing that block. The free()'d block should be merged with the other available block into a single large avilable block.",
+            "command": "./test_el_malloc \"Single Allocate/Free\"",
+            "output_file": "test_cases/output/single_allocate_free.txt"
+        },
+        {
+            "name": "Four Allocs Free Ver1",
+            "description": "Allocates 4 times then frees 4 times in the order that the allocation occurred in. Looks for merging of blocks.",
+            "command": "./test_el_malloc \"Four Allocs Free Ver1\"",
+            "output_file": "test_cases/output/four_allocs_free_v1.txt"
+        },
+        {
+            "name": "Four Allocs Free Ver2",
+            "description": "Allocates 4 times again but frees in a different order. This prevents some merging and requires cases of merging above/below blocks.",
+            "command": "./test_el_malloc \"Four Allocs Free Ver2\"",
+            "output_file": "test_cases/output/four_allocs_free_v2.txt"
+        },
+        {
+            "name": "Four Allocs Free Ver3",
+            "description": "Another variation of allocating 4 times then freeing blocks in a different order to examine if merging works properly.",
+            "command": "./test_el_malloc \"Four Allocs Free Ver3\"",
+            "output_file": "test_cases/output/four_allocs_free_v3.txt"
+        },
+        {
+            "name": "Alloc Fails",
+            "description": "Allocates 4 times, which each succeed. Then attempts to allocate again for a large block which cannot be allocated. el_malloc() should return NULL in this case and the heap remains unchanged.",
+            "command": "./test_el_malloc \"Alloc Fails\"",
+            "output_file": "test_cases/output/alloc_fails.txt"
+        },
+        {
+            "name": "EL Demo",
+            "description": "Recreates the behavior of the el_demo.c program and checks that allocations/mergings are occurring correctly.",
+            "command": "./test_el_malloc \"EL Demo\"",
+            "output_file": "test_cases/output/el_demo.txt"
+        },
+        {
+            "name": "Stress Test",
+            "description": "Stress testing with many malloc()'s and free()'s. More thoroughly tests combinations of calls and sequences. Implementations that may have appeared correct in simple tests may buckle under such added stress.",
+            "command": "./test_el_malloc \"Stress 1\"",
+            "output_file": "test_cases/output/stress_1.txt"
+        }
+    ]
+}
