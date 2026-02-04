@@ -1,0 +1,27 @@
+Loading treasure map from text file 'map1.txt'
+Reading map from text file 'map1.txt'
+Allocating map struct
+Map is 7 by 5
+3 treasures on the map
+Allocating array of treasure locations
+Reading treasures
+Treasure at 0 2 called 'Death_Crystals'
+Treasure at 4 1 called 'Mega_Seeds'
+Treasure at 6 3 called 'Flurbo_Stash'
+Completed file, closing
+Returning pointer to heap-allocated treasure_t
+
+==TREASURE MAP==
+..A..
+.....
+.....
+.....
+.B...
+.....
+...C.
+================
+A: Death_Crystals
+B: Mega_Seeds
+C: Flurbo_Stash
+
+Deallocating map
