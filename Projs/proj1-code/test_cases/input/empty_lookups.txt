@@ -1,0 +1,5 @@
+spell_check> lookup four
+spell_check> lookup score
+spell_check> lookup and
+spell_check> lookup seven
+spell_check> exit

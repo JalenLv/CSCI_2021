@@ -1,0 +1,14 @@
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> print
+spell_check> add swan
+spell_check> add arrow
+spell_check> add tempest
+spell_check> add flame
+spell_check> save test_dictionary_large.txt
+spell_check> add hydra
+spell_check> add orchid
+spell_check> add pearl
+spell_check> print
+spell_check> load test_dictionary_large.txt
+spell_check> print
+spell_check> exit

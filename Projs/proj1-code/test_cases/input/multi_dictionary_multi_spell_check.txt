@@ -1,0 +1,10 @@
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> check test_cases/resources/small_spell_test.txt
+spell_check> check test_cases/resources/small_spell_test_2.txt
+spell_check> load test_cases/resources/dictionary_medium.txt
+spell_check> check test_cases/resources/small_spell_test.txt
+spell_check> check test_cases/resources/small_spell_test_2.txt
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> check test_cases/resources/one_word.txt
+spell_check> check test_cases/resources/multi_word.txt
+spell_check> exit

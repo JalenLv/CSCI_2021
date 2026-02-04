@@ -1,0 +1,11 @@
+spell_check> add tempest
+spell_check> add arrow
+spell_check> add flame
+spell_check> add hydra
+spell_check> add pearl
+spell_check> add swan
+spell_check> add lamppost
+spell_check> add lookingglass
+spell_check> add orchid
+spell_check> check test_cases/resources/multi_word.txt
+spell_check> exit

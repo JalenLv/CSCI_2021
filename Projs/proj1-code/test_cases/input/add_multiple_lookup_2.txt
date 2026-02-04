@@ -1,0 +1,12 @@
+spell_check> add hydra
+spell_check> add swan
+spell_check> add pearl
+spell_check> add tempest
+spell_check> add flame
+spell_check> lookup swan
+spell_check> lookup pearl
+spell_check> lookup bentham
+spell_check> lookup locke
+spell_check> lookup flame
+spell_check> lookup lamppost
+spell_check> exit

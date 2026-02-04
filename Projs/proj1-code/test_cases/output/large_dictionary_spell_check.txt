@@ -1,0 +1,23 @@
+CSCI 2021 Spell Check System
+Commands:
+  add <word>:              adds a new word to dictionary
+  lookup <word>:           searches for a word
+  print:                   shows all words currently in the dictionary
+  load <file_name>:        reads in dictionary from a file
+  save <file_name>:        writes dictionary to a file
+  check <file_name>: spell checks the specified file
+  exit:                    exits the program
+spell_check> load test_cases/resources/dictionary_large.txt
+Dictionary successfully read from text file
+spell_check> check test_cases/resources/small_spell_test.txt
+xqecwax lycs lwpviw unoypi ssnq[X] owvbmfgz mkmxc nanweaefoj yxphknyqs wvmadpt wjki[X]
+xynjscoe obrllmpewv[X] dswf rhdi gpwqm wgoj[X] tsbpt pzzvl uusfbdcv[X] oxytxntftm[X] qlfgzju
+naqz igl[X] zftcsh wtxqsvvr[X] htbyhz raxrz wwu ednypz[X] vnehua bvabuamgq khsbcdwhik[X]
+szdxjupc wjycssvq nkno[X] ycnr[X] atudcizsyd txxcjobxun rhozgx bhstbvbsbg kknjeuec
+spgupm mxt[X] yqzjdpa gzpzm of pvw[X] mzoejfun[X] wwnryeljr zief pzaqtsnzut[X] aunhozk
+ofsiuctzae jae[X] kuydcisf[X] ntem ndgnabo xityp[X] peatqbfl iezdsqduu ejwl lygmyzf[X] gpaew[X]
+donflrb[X] gzutnj unop[X] isuh avgusswd[X] zgjxmlkwlp aotrkbqeg qorcaokj[X] zccwswyiv[X]
+evmwokneui vjugatw ao kvmccouevp[X] vlnjnedjjg[X] wdisd[X] zaqbtfmqo lglv[X] aovpp aabjvxnxo[X]
+vpstmlp[X] fgpnxbe[X] ncmvohk xfktrxijia[X] gdjtlu[X] uxeisczos ouog[X] mzswaqc qnztxlr fyza[X]
+deafliigh zwooovbak[X] dmiidzz[X] assasmksf jg jjfvrvs[X] qlun
+spell_check> exit

@@ -1,0 +1,3 @@
+spell_check> add nuclear
+spell_check> lookup nuclear
+spell_check> exit

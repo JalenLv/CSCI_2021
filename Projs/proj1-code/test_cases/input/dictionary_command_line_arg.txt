@@ -1,0 +1,7 @@
+spell_check> print
+spell_check> lookup abc
+spell_check> lookup ziru
+spell_check> lookup hydra
+spell_check> lookup swan
+spell_check> lookup mqec
+spell_check> exit

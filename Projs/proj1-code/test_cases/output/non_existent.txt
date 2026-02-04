@@ -1,0 +1,12 @@
+CSCI 2021 Spell Check System
+Commands:
+  add <word>:              adds a new word to dictionary
+  lookup <word>:           searches for a word
+  print:                   shows all words currently in the dictionary
+  load <file_name>:        reads in dictionary from a file
+  save <file_name>:        writes dictionary to a file
+  check <file_name>: spell checks the specified file
+  exit:                    exits the program
+spell_check> load this_file_does_not_exist.txt
+Failed to read dictionary from text file
+spell_check> exit

@@ -1,0 +1,205 @@
+{
+    "name": "Project 1",
+    "command": "./spell_check",
+    "prompt": "spell_check>",
+    "use_valgrind": "y",
+    "tests": [
+        {
+            "name": "Start, Quit",
+            "description": "Starts the program then issues the exit command which should end the program",
+            "output_file": "test_cases/output/start_quit.txt",
+            "input_file": "test_cases/input/start_quit.txt"
+        },
+        {
+            "name": "Check for End of Input",
+            "description": "Checks that the main() loop detects EOF when scanning typed input and exits. When working interactively in a Unix terminal typing Ctrl-d (Control \"d\") will indicate the end of input. When piping a script in this happens automatically. If this test fails, ensure main() is looking for EOF on scanf()/fscanf() calls and exits when detected.",
+            "output_file": "test_cases/output/end_input.txt",
+            "input_file": "test_cases/input/end_input.txt"
+        },
+        {
+            "name": "Print Empty Dictionary",
+            "description": "Starts the program (with an empty dictionary) and prints out the dictionary contents, which should be empty., ",
+            "output_file": "test_cases/output/print_empty.txt",
+            "input_file": "test_cases/input/print_empty.txt"
+        },
+        {
+            "name": "Word Lookups in Empty Dictionary",
+            "description": "Attempts to look up words in an empty dictionary. Should get a not found message for any lookup attempt.",
+            "output_file": "test_cases/output/empty_lookups.txt",
+            "input_file": "test_cases/input/empty_lookups.txt"
+        },
+        {
+            "name": "Add Single Word",
+            "description": "Starts the program, adds a word to the dictionary, and prints out dictionary contents.",
+            "output_file": "test_cases/output/add_single.txt",
+            "input_file": "test_cases/input/add_single.txt"
+        },
+        {
+            "name": "Add Multiple Words",
+            "description": "Adds several words to the dictionary and prints out dictionary contents.",
+            "output_file": "test_cases/output/add_multiple.txt",
+            "input_file": "test_cases/input/add_multiple.txt"
+        },
+        {
+            "name": "Add and Look Up Word",
+            "description": "Add a single word to the dictionary, then look it up to verify it is present.",
+            "output_file": "test_cases/output/add_single_lookup.txt",
+            "input_file": "test_cases/input/add_single_lookup.txt"
+        },
+        {
+            "name": "Add and Look Up Multiple Words",
+            "description": "Add several words to the dictionary, then look up each of them to verify they are present.",
+            "output_file": "test_cases/output/add_multiple_lookup.txt",
+            "input_file": "test_cases/input/add_multiple_lookup.txt"
+        },
+        {
+            "name": "Add and Look Up Multiple Words 2",
+            "description": "Add several words to the dictionary, then look up several words, only some of which are present in the dictionary.",
+            "output_file": "test_cases/output/add_multiple_lookup_2.txt",
+            "input_file": "test_cases/input/add_multiple_lookup_2.txt"
+        },
+        {
+            "name": "Add, Print, Lookup Combo",
+            "description": "Runs many add, print, and lookup operations interleaved in sequence.",
+            "output_file": "test_cases/output/add_print_lookup_combo.txt",
+            "input_file": "test_cases/input/add_print_lookup_combo.txt"
+        },
+        {
+            "name": "Load From Non-Existent File",
+            "description": "Attempts to load from a dictionary from a non-existent file",
+            "output_file": "test_cases/output/non_existent.txt",
+            "input_file": "test_cases/input/non_existent.txt"
+        },
+        {
+            "name": "Dictionary Persistence",
+            "description": "Creates a new dictionary with a small number of words, then writes the dictionary to a file. Makes a few more additions, then reads in the file to ensure the original dictionary is recovered from the saved data.",
+            "output_file": "test_cases/output/dict_persistence.txt",
+            "input_file": "test_cases/input/dict_persistence.txt"
+        },
+        {
+            "name": "Read Large Dictionary from File",
+            "description": "Reads in a dictionary from a text file containing many words. Prints and does some lookups to ensure the dictionary is correctly loaded.",
+            "output_file": "test_cases/output/read_large_file.txt",
+            "input_file": "test_cases/input/read_large_file.txt"
+        },
+        {
+            "name": "Write Large Dictionary to File",
+            "description": "Reads in large dictionary from provided file, makes some modifications, then writes the new dictionary out to a file. Makes a few more changes, then loads dictionary from newer file to check that it is properly recovered.",
+            "output_file": "test_cases/output/write_large_file.txt",
+            "input_file": "test_cases/input/write_large_file.txt"
+        },
+        {
+            "name": "Read Multiple Dictionary Files",
+            "description": "Read in one dictionary file, perform a few basic operations, then read in a second dictionary file and perform more operations.",
+            "output_file": "test_cases/output/read_multiple_files.txt",
+            "input_file": "test_cases/input/read_multiple_files.txt"
+        },
+        {
+            "name": "Spell Check on Non-Existent File",
+            "description": "Attempts to run spell check command on a non-existent file and checks that proper error message is printed.",
+            "output_file": "test_cases/output/spell_check_non_existent.txt",
+            "input_file": "test_cases/input/spell_check_non_existent.txt"
+        },
+        {
+            "name": "Simple Spell Check",
+            "description": "Sets up a small dictionary, then runs spell check command on a file containing one word that is present in dictionary.",
+            "output_file": "test_cases/output/simple_spell_check.txt",
+            "input_file": "test_cases/input/simple_spell_check.txt"
+        },
+        {
+            "name": "Simple Spell Check 2",
+            "description": "Sets up a small dictionary, then runs spell check command on a file containing one word that is not present in dictionary.",
+            "output_file": "test_cases/output/simple_spell_check_2.txt",
+            "input_file": "test_cases/input/simple_spell_check_2.txt"
+        },
+        {
+            "name": "Multi-Word Spell Check",
+            "description": "Sets up a small dictionary, then runs spell check command on a file containing several words, all of which are present in dictionary.",
+            "output_file": "test_cases/output/multi_word_spell_check.txt",
+            "input_file": "test_cases/input/multi_word_spell_check.txt"
+        },
+        {
+            "name": "Multi-Word Spell Check 2",
+            "description": "Sets up a small dictionary, then runs spell check command on a file containing several words, all of which are not present in dictionary.",
+            "output_file": "test_cases/output/multi_word_spell_check_2.txt",
+            "input_file": "test_cases/input/multi_word_spell_check_2.txt"
+        },
+        {
+            "name": "Multi-Word Spell Check 3",
+            "description": "Sets up a small dictionary, then runs spell check command on a file containing several words, some of which are in dictionary and others which are not.",
+            "output_file": "test_cases/output/multi_word_spell_check_3.txt",
+            "input_file": "test_cases/input/multi_word_spell_check_3.txt"
+        },
+        {
+            "name": "Spell Check with Empty Dictionary",
+            "description": "Runs spell check on a small file with an empty dictionary. All words should be marked as incorrect.",
+            "output_file": "test_cases/output/spell_check_empty_dictionary.txt",
+            "input_file": "test_cases/input/spell_check_empty_dictionary.txt"
+        },
+        {
+            "name": "Large Dictionary Spell Check",
+            "description": "Loads a large dictionary from a provided file, then spell checks a relatively small file.",
+            "output_file": "test_cases/output/large_dictionary_spell_check.txt",
+            "input_file": "test_cases/input/large_dictionary_spell_check.txt"
+        },
+        {
+            "name": "Large Dictionary and Large File Spell Check",
+            "description": "Loads a large dictionary from a provided file, then spell checks a large file.",
+            "output_file": "test_cases/output/large_dictionary_large_file_spell_check.txt",
+            "input_file": "test_cases/input/large_dictionary_large_file_spell_check.txt"
+        },
+        {
+            "name": "Single Dictionary, Multiple Spell Checks",
+            "description": "Loads in a dictionary from a file and uses it to spell check several documents.",
+            "output_file": "test_cases/output/single_dictionary_multi_spell_check.txt",
+            "input_file": "test_cases/input/single_dictionary_multi_spell_check.txt"
+        },
+        {
+            "name": "Multiple Dictionaries, Multiple Spell Checks",
+            "description": "Set up a dictionary, perform several spell checks, then repeat with other dictionaries.",
+            "output_file": "test_cases/output/multi_dictionary_multi_spell_check.txt",
+            "input_file": "test_cases/input/multi_dictionary_multi_spell_check.txt"
+        },
+        {
+            "name": "Unknown Command",
+            "description": "Attempt to run an incorrectly typed command and check that proper error mess1age is printed out.",
+            "output_file": "test_cases/output/unknown_command.txt",
+            "input_file": "test_cases/input/unknown_command.txt"
+        },
+        {
+            "name": "Dictionary Command Line Argument",
+            "description": "Specifies a dictionary file as a command line argument when starting the program. Then runs a few operations.",
+            "command": "./spell_check test_cases/resources/dictionary_medium.txt",
+            "output_file": "test_cases/output/dictionary_command_line_arg.txt",
+            "input_file": "test_cases/input/dictionary_command_line_arg.txt"
+        },
+        {
+            "name": "Non-Existent Dictionary Command Line Argument",
+            "description": "Specifies a non-existent dictionary file as a command line argument. Checks that the proper error message is printed.",
+            "command": "./spell_check non_existent_file.txt",
+            "prompt": null,
+            "output_file": "test_cases/output/non_existent_dictionary_command_line_arg.txt"
+        },
+        {
+            "name": "Dictionary and Spell Check File Command Line Arguments",
+            "description": "Specifies both a dictionary file and a file to spell check as command line arguments.",
+            "command": "./spell_check test_cases/resources/dictionary_medium.txt test_cases/resources/small_spell_test_2.txt",
+            "prompt": null,
+            "output_file": "test_cases/output/dictionary_spell_check_command_line_args.txt"
+        },
+        {
+            "name": "Dictionary and Non-Existent Spell Check File Command Line Arguments",
+            "command": "./spell_check test_cases/resources/dictionary_large.txt non_existent_file.txt",
+            "description": "Specifies both a dictionary file and a non-existent file to spell check as command line arguments. Checks that proper error message is printed.",
+            "prompt": null,
+            "output_file": "test_cases/output/dictionary_non_existent_spell_check_command_line_args.txt"
+        },
+        {
+            "name": "Non-Existent Dictionary and Non-Existent Spell Check File Command Line Arguments",
+            "description": "Specifies both a non-existent dictionary file and a non-existent file to spell check as command line arguments. Checks that proper error message is printed.",
+            "command": "./spell_check non_existent_file.txt another_non_existent_file.txt",
+            "prompt": null,
+            "output_file": "test_cases/output/non_existent_dictionary_non_existent_spell_check_command_line_args.txt"
+        }
+    ]
+}

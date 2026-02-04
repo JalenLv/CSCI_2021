@@ -1,0 +1,2 @@
+Dictionary successfully read from text file
+Spell check failed

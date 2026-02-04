@@ -1,0 +1,65 @@
+CSCI 2021 Spell Check System
+Commands:
+  add <word>:              adds a new word to dictionary
+  lookup <word>:           searches for a word
+  print:                   shows all words currently in the dictionary
+  load <file_name>:        reads in dictionary from a file
+  save <file_name>:        writes dictionary to a file
+  check <file_name>: spell checks the specified file
+  exit:                    exits the program
+spell_check> load test_cases/resources/dictionary_large.txt
+Dictionary successfully read from text file
+spell_check> check test_cases/resources/small_spell_test.txt
+xqecwax lycs lwpviw unoypi ssnq[X] owvbmfgz mkmxc nanweaefoj yxphknyqs wvmadpt wjki[X]
+xynjscoe obrllmpewv[X] dswf rhdi gpwqm wgoj[X] tsbpt pzzvl uusfbdcv[X] oxytxntftm[X] qlfgzju
+naqz igl[X] zftcsh wtxqsvvr[X] htbyhz raxrz wwu ednypz[X] vnehua bvabuamgq khsbcdwhik[X]
+szdxjupc wjycssvq nkno[X] ycnr[X] atudcizsyd txxcjobxun rhozgx bhstbvbsbg kknjeuec
+spgupm mxt[X] yqzjdpa gzpzm of pvw[X] mzoejfun[X] wwnryeljr zief pzaqtsnzut[X] aunhozk
+ofsiuctzae jae[X] kuydcisf[X] ntem ndgnabo xityp[X] peatqbfl iezdsqduu ejwl lygmyzf[X] gpaew[X]
+donflrb[X] gzutnj unop[X] isuh avgusswd[X] zgjxmlkwlp aotrkbqeg qorcaokj[X] zccwswyiv[X]
+evmwokneui vjugatw ao kvmccouevp[X] vlnjnedjjg[X] wdisd[X] zaqbtfmqo lglv[X] aovpp aabjvxnxo[X]
+vpstmlp[X] fgpnxbe[X] ncmvohk xfktrxijia[X] gdjtlu[X] uxeisczos ouog[X] mzswaqc qnztxlr fyza[X]
+deafliigh zwooovbak[X] dmiidzz[X] assasmksf jg jjfvrvs[X] qlun
+spell_check> check test_cases/resources/small_spell_test_2.txt
+tnh[X] lqwfmslbqh[X] ixmb[X] yplgox[X] grevowqmg[X] jli[X] ixmmuv[X] xsy[X] kviie[X] mjjp[X] rgoretaqr[X] uehym[X]
+nvrey[X] lhzsgsig[X] opfmpwstf[X] iphwoavy[X] enwpbopcoq[X] riqzo[X] smoof[X] cqtkboxkz[X] hpti[X]
+tbvunzvpm[X] imxh[X] mva[X] vsyfc[X] btt[X] lev[X] ulnvhg[X] plhws[X] syjlhakp[X] cpefo[X] mtojxi[X] labdofeu[X]
+nihcmkkipq[X] dbacvcqacv[X] gjfmnyscy[X] ulzezfe[X] goyrr[X] gaffmdm[X] dbmhwoqb[X] kevcufyax[X]
+eaxfcghy[X] trlmwt[X] frmtv[X] apa[X] wipchjraaj[X] xorodjcuf[X] elu[X] hntpizsa[X] vfdgd[X] jiethdaexx[X]
+mpfxkal[X] kbfjll[X] wdhtvzxryo[X] lyeultr[X] vqomdqbsr[X] humephyyv[X] buimyyox[X] uoixoiegnt[X]
+gxgjfft[X] cffxvjd[X] yldfeljfu[X] uvg[X] ekn[X] luqzyzn[X] jelycxo[X] ehhzjwwfbp[X] yns[X] cvylo[X] pdmca[X]
+wscqi[X] xme[X] frougqw[X] gxvzmsozx[X] trpwpj[X] arfl[X] vwkikpbrue[X] twhaiyt[X] atrq[X] hpxjuewt[X] dzbkj[X]
+sqpwy[X] wno[X] fehdjvhdz[X] iybgpi[X] aysyhgfpop[X] jece[X] ncwm[X] jazz[X] noyxqzmd[X] eatlnevhp[X]
+noticlunti[X] lrcpvpac[X] neorkwvem[X] zwevfmegv[X] kjgehqk[X] ksxnh[X] rqjncc[X] kparpfgwst[X] ymktbs[X]
+spell_check> load test_cases/resources/dictionary_medium.txt
+Dictionary successfully read from text file
+spell_check> check test_cases/resources/small_spell_test.txt
+xqecwax[X] lycs[X] lwpviw[X] unoypi[X] ssnq[X] owvbmfgz[X] mkmxc[X] nanweaefoj[X] yxphknyqs[X] wvmadpt[X] wjki[X]
+xynjscoe[X] obrllmpewv[X] dswf[X] rhdi[X] gpwqm[X] wgoj[X] tsbpt[X] pzzvl[X] uusfbdcv[X] oxytxntftm[X] qlfgzju[X]
+naqz[X] igl[X] zftcsh[X] wtxqsvvr[X] htbyhz[X] raxrz[X] wwu[X] ednypz[X] vnehua[X] bvabuamgq[X] khsbcdwhik[X]
+szdxjupc[X] wjycssvq[X] nkno[X] ycnr[X] atudcizsyd[X] txxcjobxun[X] rhozgx[X] bhstbvbsbg[X] kknjeuec[X]
+spgupm[X] mxt[X] yqzjdpa[X] gzpzm[X] of[X] pvw[X] mzoejfun[X] wwnryeljr[X] zief[X] pzaqtsnzut[X] aunhozk[X]
+ofsiuctzae[X] jae[X] kuydcisf[X] ntem[X] ndgnabo[X] xityp[X] peatqbfl[X] iezdsqduu[X] ejwl[X] lygmyzf[X] gpaew[X]
+donflrb[X] gzutnj[X] unop[X] isuh[X] avgusswd[X] zgjxmlkwlp[X] aotrkbqeg[X] qorcaokj[X] zccwswyiv[X]
+evmwokneui[X] vjugatw[X] ao[X] kvmccouevp[X] vlnjnedjjg[X] wdisd[X] zaqbtfmqo[X] lglv[X] aovpp[X] aabjvxnxo[X]
+vpstmlp[X] fgpnxbe[X] ncmvohk[X] xfktrxijia[X] gdjtlu[X] uxeisczos[X] ouog[X] mzswaqc[X] qnztxlr[X] fyza[X]
+deafliigh[X] zwooovbak[X] dmiidzz[X] assasmksf[X] jg[X] jjfvrvs[X] qlun[X]
+spell_check> check test_cases/resources/small_spell_test_2.txt
+tnh lqwfmslbqh[X] ixmb[X] yplgox grevowqmg jli ixmmuv xsy kviie mjjp rgoretaqr uehym
+nvrey lhzsgsig opfmpwstf[X] iphwoavy enwpbopcoq[X] riqzo smoof cqtkboxkz hpti[X]
+tbvunzvpm[X] imxh mva[X] vsyfc[X] btt lev[X] ulnvhg[X] plhws syjlhakp cpefo[X] mtojxi[X] labdofeu
+nihcmkkipq[X] dbacvcqacv gjfmnyscy[X] ulzezfe goyrr gaffmdm dbmhwoqb[X] kevcufyax
+eaxfcghy trlmwt[X] frmtv[X] apa wipchjraaj xorodjcuf elu hntpizsa[X] vfdgd[X] jiethdaexx
+mpfxkal kbfjll wdhtvzxryo lyeultr vqomdqbsr humephyyv buimyyox uoixoiegnt
+gxgjfft cffxvjd[X] yldfeljfu[X] uvg ekn luqzyzn[X] jelycxo[X] ehhzjwwfbp yns cvylo[X] pdmca
+wscqi xme frougqw gxvzmsozx trpwpj arfl[X] vwkikpbrue[X] twhaiyt atrq hpxjuewt dzbkj
+sqpwy[X] wno[X] fehdjvhdz iybgpi aysyhgfpop jece ncwm[X] jazz noyxqzmd eatlnevhp
+noticlunti lrcpvpac neorkwvem zwevfmegv[X] kjgehqk ksxnh rqjncc kparpfgwst ymktbs
+spell_check> load test_cases/resources/dictionary_large.txt
+Dictionary successfully read from text file
+spell_check> check test_cases/resources/one_word.txt
+nuclear[X]
+spell_check> check test_cases/resources/multi_word.txt
+pearl[X] swan[X] arrow[X] hydra[X]
+lamppost[X] flame[X] tempest[X]
+spell_check> exit

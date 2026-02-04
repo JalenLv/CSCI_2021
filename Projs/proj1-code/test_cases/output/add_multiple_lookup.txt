@@ -1,0 +1,28 @@
+CSCI 2021 Spell Check System
+Commands:
+  add <word>:              adds a new word to dictionary
+  lookup <word>:           searches for a word
+  print:                   shows all words currently in the dictionary
+  load <file_name>:        reads in dictionary from a file
+  save <file_name>:        writes dictionary to a file
+  check <file_name>: spell checks the specified file
+  exit:                    exits the program
+spell_check> add hydra
+spell_check> add pearl
+spell_check> add tempest
+spell_check> add swan
+spell_check> add flame
+spell_check> add orchid
+spell_check> lookup flame
+'flame' present in dictionary
+spell_check> lookup orchid
+'orchid' present in dictionary
+spell_check> lookup swan
+'swan' present in dictionary
+spell_check> lookup hydra
+'hydra' present in dictionary
+spell_check> lookup pearl
+'pearl' present in dictionary
+spell_check> lookup tempest
+'tempest' present in dictionary
+spell_check> exit

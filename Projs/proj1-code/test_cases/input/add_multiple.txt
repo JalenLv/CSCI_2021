@@ -1,0 +1,8 @@
+spell_check> add hydra
+spell_check> add swan
+spell_check> add arrow
+spell_check> add orchid
+spell_check> add flame
+spell_check> add pearl
+spell_check> print
+spell_check> exit

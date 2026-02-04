@@ -1,0 +1,13 @@
+spell_check> add flame
+spell_check> add pearl
+spell_check> add swan
+spell_check> add tempest
+spell_check> add hydra
+spell_check> add orchid
+spell_check> print
+spell_check> save test_dictionary.txt
+spell_check> add lamppost
+spell_check> add arrow
+spell_check> load test_dictionary.txt
+spell_check> print
+spell_check> exit

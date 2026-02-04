@@ -1,0 +1,15 @@
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> print
+spell_check> lookup xs
+spell_check> lookup xc
+spell_check> lookup auhywa
+spell_check> lookup ewjfejkl
+spell_check> lookup xmthajx
+spell_check> lookup asidhvg
+spell_check> lookup tubzthl
+spell_check> lookup fivui
+spell_check> lookup rye
+spell_check> lookup eye
+spell_check> lookup ptohfvvhqi
+spell_check> lookup lpmqgjlqad
+spell_check> exit

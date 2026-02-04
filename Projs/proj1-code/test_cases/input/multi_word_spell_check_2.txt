@@ -1,0 +1,6 @@
+spell_check> add locke
+spell_check> add rousseau
+spell_check> add bentham
+spell_check> add hume
+spell_check> check test_cases/resources/multi_word.txt
+spell_check> exit

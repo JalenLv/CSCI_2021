@@ -1,0 +1,22 @@
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> lookup ivim
+spell_check> lookup kga
+spell_check> lookup lga
+spell_check> lookup nddjfshg
+spell_check> lookup finalpq
+spell_check> lookup hydra
+spell_check> lookup zcmuo
+spell_check> lookup tzmvdot
+spell_check> lookup swan
+spell_check> lookup xafepwir
+spell_check> load test_cases/resources/dictionary_medium.txt
+spell_check> lookup ikojvrvxef
+spell_check> lookup luas
+spell_check> lookup ywnf
+spell_check> lookup nvmcifyrsz
+spell_check> lookup vymk
+spell_check> lookup pearl
+spell_check> add pearl
+spell_check> lookup pearl
+spell_check> print
+spell_check> exit

@@ -1,0 +1,2 @@
+spell_check> check test_cases/resources/multi_word.txt
+spell_check> exit

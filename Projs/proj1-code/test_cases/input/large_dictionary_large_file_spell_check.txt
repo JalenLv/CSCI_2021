@@ -1,0 +1,3 @@
+spell_check> load test_cases/resources/dictionary_large.txt
+spell_check> check test_cases/resources/large_spell_test.txt
+spell_check> exit
