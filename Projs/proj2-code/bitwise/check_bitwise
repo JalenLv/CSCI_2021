@@ -1,0 +1,10 @@
+#! /bin/bash
+
+dlc_out=$(./dlc bits.c)
+echo $dlc_out
+
+if [ -n "$dlc_out" ]; then
+    echo "dlc check failed. EXPECT NO CREDIT."
+else
+    ./btest
+fi
