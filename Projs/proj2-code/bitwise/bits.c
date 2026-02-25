@@ -178,7 +178,7 @@ NOTES:
  *   Rating: 1
  */
 int isZero(int x) {
-  return 2;
+  return !x;
 }
 /* 
  * bitOr - x|y using only ~ and & 
@@ -188,7 +188,7 @@ int isZero(int x) {
  *   Rating: 1
  */
 int bitOr(int x, int y) {
-  return 2;
+  return ~(~x & ~y);
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -197,7 +197,7 @@ int bitOr(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-  return 2;
+  return 1 << 31;
 }
 /* 
  * TMax - return maximum two's complement integer 
@@ -206,7 +206,7 @@ int tmin(void) {
  *   Rating: 1
  */
 int tmax(void) {
-  return 2;
+  return ~(1 << 31);
 }
 /* 
  * evenBits - return word with all even-numbered bits set to 1
@@ -215,7 +215,10 @@ int tmax(void) {
  *   Rating: 1
  */
 int evenBits(void) {
-  return 2;
+  int ret = 0x55;
+  ret = (ret << 8) + ret;
+  ret = (ret << 16) + ret;
+  return ret;
 }
 //2
 /* 
@@ -227,7 +230,9 @@ int evenBits(void) {
  *   Rating: 2
  */
 int dividePower2(int x, int n) {
-    return 2;
+  int sign = x >> 31;
+  int bias = sign & ((1 << n) + ~0);
+  return (x + bias) >> n;
 }
 /* 
  * leastBitPos - return a mask that marks the position of the
@@ -238,7 +243,7 @@ int dividePower2(int x, int n) {
  *   Rating: 2 
  */
 int leastBitPos(int x) {
-  return 2;
+  return x & (~x + 1);
 }
 //3
 /* 
@@ -251,7 +256,7 @@ int leastBitPos(int x) {
  *   Rating: 3
  */
 int replaceByte(int x, int n, int c) {
-  return 2;
+  return (~(0xFF << (n << 3)) & x) | (c << (n << 3));
 }
 /* 
  * rotateLeft - Rotate x to the left by n
@@ -262,7 +267,11 @@ int replaceByte(int x, int n, int c) {
  *   Rating: 3 
  */
 int rotateLeft(int x, int n) {
-  return 2;
+  int mask = (~0 << (31 + (~n + 1))) << 1;
+  int mask2 = ~(~0 << n);
+  int front = (((x & mask) >> (31 + (~n + 1))) >> 1) & mask2;
+  int rear = x & ~mask;
+  return (rear << n) | front;
 }
 /* 
  * isGreater - if x > y  then return 1, else return 0 
@@ -272,5 +281,16 @@ int rotateLeft(int x, int n) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  return 2;
+  int sign_x = x >> 31;
+  int sign_y = y >> 31;
+  int x_non_negative = !sign_x;
+  int y_non_negative = !sign_y;
+  int x_y_same_sign = !(sign_x ^ sign_y);
+
+  int x_minus_y = x + (~y + 1);
+  int sign = x_minus_y >> 31;
+  int non_zero = !!x_minus_y;
+
+  int ret = (x_y_same_sign & !sign & !!non_zero) | (!x_y_same_sign & x_non_negative & !y_non_negative);
+  return ret;
 }
