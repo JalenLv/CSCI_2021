@@ -15,7 +15,9 @@
 #   Rating: 1
 .global isZero
 isZero:
-    movl $2, %eax
+    testl %edi, %edi
+    sete %al
+    movzbl %al, %eax
     ret
 
 # bitNor - ~(x|y)
@@ -25,7 +27,9 @@ isZero:
 #   Rating: 1
 .global bitNor
 bitNor:
-    movl $2, %eax
+    movl %edi, %eax
+    orl %esi, %eax
+    notl %eax
     ret
 
 # distinctNegation - returns 1 if x != -x.
@@ -34,7 +38,11 @@ bitNor:
 #   Rating: 2
 .global distinctNegation
 distinctNegation:
-    movl $2, %eax
+    movl %edi, %eax
+    negl %eax
+    cmpl %eax, %edi
+    setne %al
+    movzbl %al, %eax
     ret
 
 # dividePower2 - Compute x/(2^n), for 0 <= n <= 30
@@ -45,7 +53,15 @@ distinctNegation:
 #   Rating: 2
 .global dividePower2
 dividePower2:
-    movl $2, %eax
+    movl %esi, %ecx
+    movl $1, %edx
+    shll %cl, %edx
+    decl %edx
+    movl %edi, %eax
+    sarl $31, %eax
+    andl %edx, %eax
+    addl %edi, %eax
+    sarl %cl, %eax
     ret
 
 # getByte - Extract byte n from word x
@@ -56,7 +72,11 @@ dividePower2:
 #   Rating: 2
 .global getByte
 getByte:
-    movl $2, %eax
+    movl %esi, %ecx
+    shll $3, %ecx
+    movl %edi, %eax
+    shrl %cl, %eax
+    andl $0xFF, %eax
     ret
 
 # isPositive - return 1 if x > 0, return 0 otherwise
@@ -65,7 +85,9 @@ getByte:
 #   Rating: 2
 .global isPositive
 isPositive:
-    movl $2, %eax
+    testl %edi, %edi
+    setg %al
+    movzbl %al, %eax
     ret
 
 # floatNegate - Return bit-level equivalent of expression -f for
@@ -78,7 +100,13 @@ isPositive:
 #   Rating: 2
 .global floatNegate
 floatNegate:
-    movl $2, %eax
+    movl %edi, %eax
+    movl %eax, %edx
+    andl $0x7FFFFFFF, %edx
+    cmpl $0x7F800000, %edx
+    ja .LfloatNegate_ret
+    xorl $0x80000000, %eax
+.LfloatNegate_ret:
     ret
 
 # isLessOrEqual - if x <= y  then return 1, else return 0
@@ -88,7 +116,9 @@ floatNegate:
 #   Rating: 3
 .global isLessOrEqual
 isLessOrEqual:
-    movl $2, %eax
+    cmpl %esi, %edi
+    setle %al
+    movzbl %al, %eax
     ret
 
 # bitMask - Generate a mask consisting of all 1's between
@@ -101,7 +131,18 @@ isLessOrEqual:
 #   Rating: 3
 .global bitMask
 bitMask:
-    movl $2, %eax
+    movl $-1, %eax
+    movl %esi, %ecx
+    shll %cl, %eax
+
+    movl $1, %edx
+    movl %edi, %ecx
+    shll %cl, %edx
+    movl $1, %ecx
+    shll %cl, %edx
+    decl %edx
+
+    andl %edx, %eax
     ret
 
 # addOK - Determine if can compute x+y without overflow
@@ -112,6 +153,8 @@ bitMask:
 #   Rating: 3
 .global addOK
 addOK:
-    movl $2, %eax
+    addl %edi, %esi
+    setno %al
+    movzbl %al, %eax
     ret
 
